@@ -28,6 +28,8 @@ public class ReadFile {
 		}
 	}
 	
+	//teste teste
+	
 	//fazer getPATH
 	//so da para ler no destktop
 	public static void main(String[] args) {
