@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class ReadFile {
@@ -8,16 +10,18 @@ public class ReadFile {
 
 
 
-	public ReadFile(String caminho) {
-		this.path=caminho;
-		System.out.println(caminho);
+	public ReadFile(String nome_ficheiro) {
+		this.path=nome_ficheiro;
+		System.out.println(path);
 	}
 	
 	void ler() {
 		try {
 			Scanner scanner = new Scanner(new File(path));
-			while(scanner.hasNextLine()) {
-				System.out.println(scanner.nextLine());
+			while(scanner.hasNext()) {
+				String token = scanner.next();
+				separa(token);
+
 			}
 			
 			scanner.close();
@@ -27,6 +31,12 @@ public class ReadFile {
 			System.out.println("erro");
 		}
 	}
+	
+	public void separa(String line) {
+		String[] tokens = line.split(",");
+		System.out.println(tokens[0] + " " + tokens[1]);
+	}
+
 	
 	//teste teste
 	
