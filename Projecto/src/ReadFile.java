@@ -2,10 +2,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
  
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import com.sun.rowset.internal.Row;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Iterator;
@@ -24,55 +26,26 @@ public class ReadFile {
 		this.path=nome_ficheiro;
 		System.out.println(path);
 	}
-	/*
-	void ler() {
-		try {
-			Scanner scanner = new Scanner(new File(path));
-			while(scanner.hasNext()) {
-				String token = scanner.next();
-				separa(token);
-
-			}
-			
-			scanner.close();
-			
-			
-		} catch (FileNotFoundException e) {
-			System.out.println("erro");
-		}
-	}
 	
-	public void separa(String line) {
-		String[] tokens = line.split(",");
-		System.out.println(tokens[0] + " " + tokens[1]);
-	}
-	//ola
-	
-	//teste teste
-	
-	//fazer getPATH
-	//so da para ler no destktop
-	 * 
-	 * */
 	
 	void ler() {
 		File excelFile = new File(path); 
 		try {
 			FileInputStream fis = new FileInputStream(excelFile);
 			XSSFWorkbook workbook = new XSSFWorkbook(fis);
+			XSSFSheet sheet = workbook.getSheetAt(0);
+
 			
 			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("errroooo");
+			e.getMessage();
 		}
 		
 	}
 	 
 	public static void main(String[] args) {
 		new ReadFile("C:/Users/Eduardo/Desktop/lLong-Method.xlsx").ler();
-		new ReadFile("C:/Users/Eduardo/Desktop/lista.txt").ler();
-
 	}
 
 }
