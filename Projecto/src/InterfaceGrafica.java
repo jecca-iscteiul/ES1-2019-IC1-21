@@ -154,6 +154,7 @@ public class InterfaceGrafica {
 		
 		//.mostrarFicheiro.add(new ReadFile("C:\\Users\\Irina Fernandes\\Desktop\\Long-Method.xlsx"));
 
+		System.out.println("");
 		return mostrarFicheiro;
 
 	}
