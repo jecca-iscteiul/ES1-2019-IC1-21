@@ -20,7 +20,7 @@ public class ReadFile {
 	
 	void ler() throws IOException {
 		// Creating a Workbook from an Excel file (.xls or .xlsx)(.xlsx)
-        Workbook workbook = WorkbookFactory.create(new File("C:/Users/Eduardo/Desktop/Long-Method.xlsx"));
+        Workbook workbook = WorkbookFactory.create(new File(path));
 
         // Retrieving the number of sheets in the Workbook
         System.out.println("Workbook has " + workbook.getNumberOfSheets() + " Sheets : ");
@@ -104,11 +104,11 @@ public class ReadFile {
         workbook.close();
     }
     
-		
+
 	
-	 
+	
 	public static void main(String[] args) throws IOException {
-		new ReadFile("C:/Users/Eduardo/Desktop/lLong-Method.xlsx").ler();
+		new ReadFile("C:\\Users\\Irina Fernandes\\Desktop\\Long-Method.xlsx").ler();
 	}
 
 }

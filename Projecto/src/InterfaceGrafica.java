@@ -114,12 +114,12 @@ public class InterfaceGrafica {
 		});
 
 
-
 		JButton mostrarFicheiro = new JButton("Mostrar Ficheiro");
 		mostrarFicheiro.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				// COLOCAR AQUI A PARTE DO EDUARDO  --- INTERLIGAR ESSAS DUAS PARTES
 				
 			}
@@ -149,6 +149,10 @@ public class InterfaceGrafica {
 		mostrarFicheiro.setPreferredSize(new Dimension(450, 350));
 		mostrarFicheiro.setVisible(true);
 		mostrarFicheiro.setBackground(Color.PINK);
+		
+	//	ReadFile ficheiro = new ReadFile("C:\\Users\\Irina Fernandes\\Desktop\\Long-Method.xlsx");
+		
+		//.mostrarFicheiro.add(new ReadFile("C:\\Users\\Irina Fernandes\\Desktop\\Long-Method.xlsx"));
 
 		return mostrarFicheiro;
 

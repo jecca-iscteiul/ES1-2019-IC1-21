@@ -2,6 +2,8 @@
 public class Main {
 
 	public static void main(String[] args) {
-	//	InterGraf gui = new InterGraf();
+		System.out.println("primeiro");
+		InterfaceGrafica gui = new InterfaceGrafica();
+		System.out.println("teste");
 	}
 }
