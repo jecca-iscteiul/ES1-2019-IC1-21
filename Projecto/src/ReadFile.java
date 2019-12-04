@@ -1,78 +1,114 @@
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
- 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Iterator;
-import java.io.FileNotFoundException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Scanner;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class ReadFile {
 
 	private String path;
 
-
-
 	public ReadFile(String nome_ficheiro) {
 		this.path=nome_ficheiro;
 		System.out.println(path);
 	}
-	/*
-	void ler() {
-		try {
-			Scanner scanner = new Scanner(new File(path));
-			while(scanner.hasNext()) {
-				String token = scanner.next();
-				separa(token);
+	
+	void ler() throws IOException {
+		// Creating a Workbook from an Excel file (.xls or .xlsx)(.xlsx)
+        Workbook workbook = WorkbookFactory.create(new File("C:/Users/Eduardo/Desktop/Long-Method.xlsx"));
 
-			}
-			
-			scanner.close();
-			
-			
-		} catch (FileNotFoundException e) {
-			System.out.println("erro");
-		}
-	}
-	
-	public void separa(String line) {
-		String[] tokens = line.split(",");
-		System.out.println(tokens[0] + " " + tokens[1]);
-	}
-	//ola
-	
-	//teste teste
-	
-	//fazer getPATH
-	//so da para ler no destktop
-	 * 
-	 * */
-	
-	void ler() {
-		File excelFile = new File(path); 
-		try {
-			FileInputStream fis = new FileInputStream(excelFile);
-			XSSFWorkbook workbook = new XSSFWorkbook(fis);
-			
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        // Retrieving the number of sheets in the Workbook
+        System.out.println("Workbook has " + workbook.getNumberOfSheets() + " Sheets : ");
+
+        /*
+           =============================================================
+           Iterating over all the sheets in the workbook (Multiple ways)
+           =============================================================
+        */
+
+        // 1. You can obtain a sheetIterator and iterate over it
+        Iterator<Sheet> sheetIterator = workbook.sheetIterator();
+        System.out.println("Retrieving Sheets using Iterator");
+        while (sheetIterator.hasNext()) {
+            Sheet sheet = sheetIterator.next();
+            System.out.println("=> " + sheet.getSheetName());
+        }
+
+        // 2. Or you can use a for-each loop
+        System.out.println("Retrieving Sheets using for-each loop");
+        for(Sheet sheet: workbook) {
+            System.out.println("=> " + sheet.getSheetName());
+        }
+
+        // 3. Or you can use a Java 8 forEach with lambda
+        System.out.println("Retrieving Sheets using Java 8 forEach with lambda");
+        workbook.forEach(sheet -> {
+            System.out.println("=> " + sheet.getSheetName());
+        });
+
+        /*
+           ==================================================================
+           Iterating over all the rows and columns in a Sheet (Multiple ways)
+           ==================================================================
+        */
+
+        // Getting the Sheet at index zero
+        Sheet sheet = workbook.getSheetAt(0);
+
+        // Create a DataFormatter to format and get each cell's value as String
+        DataFormatter dataFormatter = new DataFormatter();
+
+        // 1. You can obtain a rowIterator and columnIterator and iterate over them
+        System.out.println("\n\nIterating over Rows and Columns using Iterator\n");
+        Iterator<Row> rowIterator = sheet.rowIterator();
+        while (rowIterator.hasNext()) {
+            Row row = rowIterator.next();
+
+            // Now let's iterate over the columns of the current row
+            Iterator<Cell> cellIterator = row.cellIterator();
+
+            while (cellIterator.hasNext()) {
+                Cell cell = cellIterator.next();
+                String cellValue = dataFormatter.formatCellValue(cell);
+                System.out.print(cellValue + "\t");
+            }
+            System.out.println();
+        }
+
+        // 2. Or you can use a for-each loop to iterate over the rows and columns
+        System.out.println("\n\nIterating over Rows and Columns using for-each loop\n");
+        for (Row row: sheet) {
+            for(Cell cell: row) {
+                String cellValue = dataFormatter.formatCellValue(cell);
+                System.out.print(cellValue + "\t");
+            }
+            System.out.println();
+        }
+
+        // 3. Or you can use Java 8 forEach loop with lambda
+        System.out.println("\n\nIterating over Rows and Columns using Java 8 forEach with lambda\n");
+        sheet.forEach(row -> {
+            row.forEach(cell -> {
+                String cellValue = dataFormatter.formatCellValue(cell);
+                System.out.print(cellValue + "\t");
+            });
+            System.out.println();
+        });
+
+        // Closing the workbook
+        workbook.close();
+    }
+    
 		
-	}
+	
 	 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		new ReadFile("C:/Users/Eduardo/Desktop/lLong-Method.xlsx").ler();
-		new ReadFile("C:/Users/Eduardo/Desktop/lista.txt").ler();
-
 	}
 
 }
