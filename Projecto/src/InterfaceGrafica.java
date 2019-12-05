@@ -1,5 +1,3 @@
-
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,6 +8,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -21,12 +20,15 @@ public class InterfaceGrafica {
 	private JList<String> list;
 	private DefaultListModel listModel = new DefaultListModel<>();
 	private JFrame janelaExibirMetricas;
-
-
-
-
+	
 	public InterfaceGrafica() {
-
+		ReadFile lerFicheiro = new ReadFile();
+		while(!lerFicheiro.isFicheiro_encontrado()) {
+			String nome = askFileName();
+			lerFicheiro.ler(nome);
+		}
+		
+		
 		frame = new JFrame("App para detetar a qualidade de defeitos");
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setLayout(new BorderLayout());
@@ -38,6 +40,11 @@ public class InterfaceGrafica {
 
 	}
 
+	public String askFileName() {
+	    JFrame frame = new JFrame("Nome do Ficheiro");
+	    String name = JOptionPane.showInputDialog(frame, "Diga o nome do ficheiro:");
+	    return name;
+	}
 
 	// ISSO É PARA SE ALTERAR --- TEMOS QUE LER DO FICHEIRO
 	private void updateList() {
@@ -58,10 +65,7 @@ public class InterfaceGrafica {
 		janelaExibirMetricas.setVisible(true);
 
 		updateList();
-
 	}
-
-
 
 	private void addFrameContent() {
 
@@ -133,11 +137,8 @@ public class InterfaceGrafica {
 		painel.add(definirThresholds);
 		
 
-
-
 		frame.add(painel, BorderLayout.SOUTH);
 		frame.add(winFicheiro(""), BorderLayout.NORTH);	
-
 
 	}
 
@@ -150,7 +151,7 @@ public class InterfaceGrafica {
 		mostrarFicheiro.setVisible(true);
 		mostrarFicheiro.setBackground(Color.PINK);
 		
-	//	ReadFile ficheiro = new ReadFile("C:\\Users\\Irina Fernandes\\Desktop\\Long-Method.xlsx");
+		//	ReadFile ficheiro = new ReadFile("C:\\Users\\Irina Fernandes\\Desktop\\Long-Method.xlsx");
 		
 		//.mostrarFicheiro.add(new ReadFile("C:\\Users\\Irina Fernandes\\Desktop\\Long-Method.xlsx"));
 
@@ -159,7 +160,6 @@ public class InterfaceGrafica {
 
 	}
 
-
 	public void updateJanelaExibirMetricas(String [] metricas) {
 
 		for(int i=0; i!=metricas.length; i++)
@@ -167,9 +167,5 @@ public class InterfaceGrafica {
 
 	}
 
-
-	public static void main(String[] args) {
-		InterfaceGrafica gui = new InterfaceGrafica();
-	}
 
 }
