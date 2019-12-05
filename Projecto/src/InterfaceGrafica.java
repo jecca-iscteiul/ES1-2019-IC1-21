@@ -26,6 +26,9 @@ public class InterfaceGrafica {
 		while(!lerFicheiro.isFicheiro_encontrado()) {
 			String nome = askFileName();
 			lerFicheiro.ler(nome);
+			if(!lerFicheiro.isFicheiro_encontrado()) {
+				JOptionPane.showMessageDialog(new JFrame("Erro :("), "O ficheiro: " + nome + " não foi encontrado, \n Tente outra vez :)"  );
+			}
 		}
 		
 		
