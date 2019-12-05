@@ -1,3 +1,4 @@
+import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
@@ -9,7 +10,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-public class ReadFile {
+public class ReadFile extends Component {
 
 	private String path;
 
@@ -105,8 +106,7 @@ public class ReadFile {
     }
     
 
-	
-	
+
 	public static void main(String[] args) throws IOException {
 		new ReadFile("C:\\Users\\Irina Fernandes\\Desktop\\Long-Method.xlsx").ler();
 	}

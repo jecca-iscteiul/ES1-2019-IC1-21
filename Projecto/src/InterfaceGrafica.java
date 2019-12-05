@@ -114,13 +114,23 @@ public class InterfaceGrafica {
 		});
 
 
-		JButton mostrarFicheiro = new JButton("Mostrar Ficheiro");
-		mostrarFicheiro.addActionListener(new ActionListener() {
+		JButton escolherFicheiro = new JButton("Escolher Ficheiro");
+		escolherFicheiro.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				// COLOCAR AQUI A PARTE DO EDUARDO  --- INTERLIGAR ESSAS DUAS PARTES
+				winFicheiro("");
+				
+			}
+		});
+		
+		JButton detetarDefeitos = new JButton("Detetar defeitos");
+		detetarDefeitos.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
 				
 			}
 		});
@@ -129,8 +139,9 @@ public class InterfaceGrafica {
 
 		JPanel painel = new JPanel();
 		painel.setBackground(Color.gray);
-		painel.add(mostrarFicheiro);
+		painel.add(escolherFicheiro);
 		painel.add(definirThresholds);
+		painel.add(detetarDefeitos);
 		
 
 
@@ -152,9 +163,12 @@ public class InterfaceGrafica {
 		
 	//	ReadFile ficheiro = new ReadFile("C:\\Users\\Irina Fernandes\\Desktop\\Long-Method.xlsx");
 		
-		//.mostrarFicheiro.add(new ReadFile("C:\\Users\\Irina Fernandes\\Desktop\\Long-Method.xlsx"));
+//		mostrarFicheiro.add(new ReadFile("C:\\Users\\Irina Fernandes\\Desktop\\Long-Method.xlsx").ler());
 
-		System.out.println("kjj");
+		//JTextArea area2 = new JTextArea();
+		
+		
+	
 		return mostrarFicheiro;
 
 	}
