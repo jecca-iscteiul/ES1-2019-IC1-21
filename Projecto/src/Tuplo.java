@@ -12,7 +12,7 @@ public class Tuplo {
 	private int cyclo;
 	private String classs;
 	private double laa;
-
+ 
 	public Tuplo(int id, String packages,String classs, String metodo, int loc, int cyclo, int atfd, double laa, boolean is_long_method, boolean plasma, boolean pmd, boolean is_feature_envy) {
 		this.id=id;
 		this.packages=packages;
