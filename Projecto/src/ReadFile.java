@@ -19,14 +19,17 @@ public class ReadFile  {
 	private List<Tuplo> miniLista = new ArrayList<>();
 	private String path;
 	private boolean ficheiro_encontrado;
-
+	private String nomeFicheiro;
+	
 	public ReadFile() {
 		ficheiro_encontrado=false;
 	}
 	
 	void ler(String nomeficheiro)  {
+		this.nomeFicheiro=nomeficheiro;
 //		this.path = System.getProperty("user.dir" + "\\" + nomeficheiro );
 //		System.out.println(path);
+//		this.path="C:/Users/Eduardo/Desktop/"+nomeficheiro;
 		this.path = nomeficheiro;
 		//this.path="C:/Users/Irina Fernandes/Desktop/"+nomeficheiro;
 		
@@ -53,7 +56,7 @@ public class ReadFile  {
 	            }
 	
 	            if(contador!=0) {
-	            	Tuplo mini = new Tuplo(Integer.parseInt(a[0]), a[1], a[2], a[3], Integer.parseInt(a[4]), Integer.parseInt(a[5]), Integer.parseInt(a[6]), Double.valueOf(a[7]), Boolean.getBoolean(a[8]), Boolean.getBoolean(a[9]), Boolean.getBoolean(a[10]), Boolean.getBoolean(a[11]));
+	            	Tuplo mini = new Tuplo(Integer.parseInt(a[0]), a[1], a[2], a[3], Integer.parseInt(a[4]), Integer.parseInt(a[5]), Integer.parseInt(a[6]), Double.valueOf(a[7]), Boolean.parseBoolean(a[8]), Boolean.parseBoolean(a[9]), Boolean.parseBoolean(a[10]), Boolean.parseBoolean(a[11]));
 	                miniLista.add(mini);
 	            }
 	            contador++;
@@ -92,7 +95,9 @@ public class ReadFile  {
 //	//	new ReadFile("C:\\Users\\Irina Fernandes\\Desktop\\Long-Method.xlsx").ler();
 //	}
 
-
+	public String getnomeFicheiro() {
+		return nomeFicheiro;
+	}
 
 	public List<Tuplo> getMiniLista() {
 		return miniLista;
