@@ -38,7 +38,7 @@ public class InterfaceGrafica {
 			String nome = askFileName();
 			lerFicheiro.ler(nome);
 			if(!lerFicheiro.isFicheiro_encontrado()) {
-				JOptionPane.showMessageDialog(new JFrame("Erro :("), "O ficheiro: " + nome + " não foi encontrado, \n Tente outra vez :)"  );
+				JOptionPane.showMessageDialog(new JFrame("Erro :("), "O ficheiro: " + nome + " nï¿½o foi encontrado, \n Tente outra vez :)"  );
 
 			}
 		}
@@ -57,7 +57,7 @@ public class InterfaceGrafica {
 
 	public String askFileName() {
 		JFrame frame = new JFrame("Nome do Ficheiro");
-		fileName = JOptionPane.showInputDialog(frame, "Diga o nome do ficheiro:");
+		fileName = JOptionPane.showInputDialog(frame, "Diga o nome do ficheiro:", "Long-Method.xlsx");
 		return fileName;
 	}
 
@@ -95,7 +95,7 @@ public class InterfaceGrafica {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				janelaExibirMetricas = new JFrame("Escolha as métricas");
+				janelaExibirMetricas = new JFrame("Escolha as mï¿½tricas");
 				updateMetricas();
 
 
