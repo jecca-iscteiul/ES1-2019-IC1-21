@@ -1,7 +1,9 @@
 import java.awt.BorderLayout;
 import java.awt.Checkbox;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Frame;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -12,11 +14,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class MiniGUI {
 
-	
 	
 	private JFrame frame;
 	private ReadFile lerFicheiro;
@@ -28,17 +32,24 @@ public class MiniGUI {
 	private JList<String> texto_list2;
 	
 	
-	public MiniGui(ReadFile lerFicheiro){
+	public MiniGUI(ReadFile lerFicheiro){
 		this.id=0;
 		this.lerFicheiro=lerFicheiro;
 		inicializar();
 		addBotao();
 		textovertical();
-		selecionarJList();
+		selecionarJlist();
 		frame.setVisible(true);
 	
 	}
 
+	public int getID() {
+		id++;
+		return id;
+	}
+	public void trataTuplo(Tuplo tuplo) {
+		modelo.addElement("Regra com id: " + tuplo.getIdregra() + " -->" + tuplo.getMetrica() + " " + tuplo.getContas() + " " + tuplo.getValor());
+	}
 
 	private void inicializar() {
 		frame= new JFrame (lerFicheiro.getnomeFicheiro() + "--> Definir Thresholds");
@@ -105,5 +116,52 @@ public class MiniGUI {
 		frame.add(painel_baixo, BorderLayout.SOUTH);
 	}
 	
+public void textovertical() {
+		
+		JPanel painel=new JPanel();
+		painel.setLayout(new GridLayout(2,1));
+		
+		JPanel painelC=new JPanel();
+		painelC.setLayout(new BorderLayout());
+		
+		JTextArea verticalC = new JTextArea(1,1);
+		verticalC.setText("n" + "\n" +"ã"+ "\n" +"o"+ "\n" +" "+ "\n" +"g"+ "\n" +"u" + "\n" + "a" + "\n" + "r" + "\n" +"d"+ "\n" + "a" + "\n" + "d" + "\n" + "o" + "\n" + " ");
+		painelC.add(verticalC, new BorderLayout().WEST);
+		
+		verticalC.setBackground(new Color(255,0,222));
+		
+		JPanel painelB=new JPanel();
+		painelB.setLayout(new BorderLayout());
+		
+		JTextArea verticalB = new JTextArea(1,1);
+		verticalB.setText("g"+ " \n" +"u" + "\n" + "a" + "\n" + "r" + "\n" +"d"+ "\n" + "a" + "\n" + "d" + "\n" + "o");
+		painelB.add(verticalB, new BorderLayout().WEST);
+	
+		
+		modelo = new DefaultListModel<>();
+		texto_list=new JList<String>(modelo);
+		painelC.add(texto_list);
+		
+		modelo2 = new DefaultListModel<>();
+		texto_list2=new JList<String>(modelo2);
+		painelB.add(texto_list);
+		
+		painel.add(painelC);
+		painel.add(painelB);
+		frame.add(painel, new BorderLayout().CENTER);
+	}
+	
+	public void selecionarJlist() {
+	texto_list.addListSelectionListener(new ListSelectionListener(){
+		@Override
+        public void valueChanged(ListSelectionEvent arg0) {
+			if (!arg0.getValueIsAdjusting()) {	
+            	System.out.println(texto_list.getSelectedValue().toString() + " está selecionado");
+            }
+        }
+    });
+}
+
+
 	
 }

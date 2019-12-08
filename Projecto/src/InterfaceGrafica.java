@@ -38,7 +38,7 @@ public class InterfaceGrafica {
 			String nome = askFileName();
 			lerFicheiro.ler(nome);
 			if(!lerFicheiro.isFicheiro_encontrado()) {
-				JOptionPane.showMessageDialog(new JFrame("Erro :("), "O ficheiro: " + nome + " n�o foi encontrado, \n Tente outra vez :)"  );
+				JOptionPane.showMessageDialog(new JFrame("Erro :("), "O ficheiro: " + nome + " nao foi encontrado, \n Tente outra vez :)"  );
 
 			}
 		}
@@ -94,8 +94,8 @@ public class InterfaceGrafica {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				janelaExibirMetricas = new JFrame("Escolha as m�tricas");
+				new MiniGUI(lerFicheiro);
+				/*janelaExibirMetricas = new JFrame("Escolha as m�tricas");
 				updateMetricas();
 
 
@@ -133,7 +133,7 @@ public class InterfaceGrafica {
 
 
 				janelaExibirMetricas.add(escolher, BorderLayout.SOUTH);
-
+	*/
 			}
 		});
 
