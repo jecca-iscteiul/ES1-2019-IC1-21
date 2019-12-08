@@ -1,3 +1,4 @@
+package Essenciais;
 import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
@@ -20,12 +21,19 @@ public class ReadFile  {
 	private String path;
 	private boolean ficheiro_encontrado;
 	private String nomeFicheiro;
+
+	private int DCI;	//  (PMI ou iPlasma) é TRUE e a coluna e is_long_method também é TRUE;
+	private int DII;	 // (PMI ou iPlasma) é TRUE e is_long_method é FALSE;
+	private int ADCI;   // (PMI ou iPlasma) é FALSE e a coluna is_long_method também é FALSE;
+	private int ADII;	//  (PMI ou iPlasma) é FALSE e is_long_method é TRUE.
+
+	
 	
 	public ReadFile() {
 		ficheiro_encontrado=false;
 	}
 	
-	void ler(String nomeficheiro)  {
+	public void ler(String nomeficheiro)  {
 		this.nomeFicheiro=nomeficheiro;
 //		this.path = System.getProperty("user.dir" + "\\" + nomeficheiro );
 //		System.out.println(path);
@@ -76,10 +84,10 @@ public class ReadFile  {
 			System.out.println("--------------------------");
 			System.out.println(tuplo.getId());
 			System.out.println(tuplo.getPackages());
-			System.out.println(tuplo.getClasss());
+			System.out.println(tuplo.getClass());
 			System.out.println(tuplo.getMetodo());
 			System.out.println(tuplo.getLoc());
-			System.out.println(tuplo.getCylo());
+			System.out.println(tuplo.getCyclo());
 			System.out.println(tuplo.getAtfd());
 			System.out.println(tuplo.getLaa());
 			System.out.println(tuplo.isIs_long_method());
@@ -89,11 +97,6 @@ public class ReadFile  {
 		}
 	}
 
-
-
-//	public static void main(String[] args) throws IOException {
-//	//	new ReadFile("C:\\Users\\Irina Fernandes\\Desktop\\Long-Method.xlsx").ler();
-//	}
 
 	public String getnomeFicheiro() {
 		return nomeFicheiro;
@@ -109,7 +112,60 @@ public class ReadFile  {
 
 	public boolean isFicheiro_encontrado() {
 		return ficheiro_encontrado;
-//>>>>>>> branch 'master' of https://github.com/jecca-iscteiul/ES1-2019-IC1-21.git
 	}
+	
+	
+	
+	public List<Integer> contadores (String ferramenta) {  // os contadores são retorndos por essa ordem: DCI, DII, ADCI e ADII
+
+		for(Tuplo tuplo: getMiniLista()) {
+			if (ferramenta.equals("iPlasma")) {
+				if((tuplo.isPlasma() == true) && (tuplo.isIs_long_method() == true)) 
+					this.DCI++;	
+
+				if((tuplo.isPlasma() == true) && (tuplo.isIs_long_method() == false))
+					this.DII++;
+
+				if((tuplo.isPlasma() == false) && (tuplo.isIs_long_method() == false))
+					this.ADCI++;
+
+				if((tuplo.isPlasma() == false) && (tuplo.isIs_long_method() == true)) 
+					this.ADII++; 
+
+			}
+
+			if(ferramenta.equals("PMD")) {
+				if((tuplo.isPmd() == true) && (tuplo.isIs_long_method() == true))
+					this.DCI++;
+
+				if((tuplo.isPmd() == true) && (tuplo.isIs_long_method() == false))
+					this.DII++;
+
+				if((tuplo.isPmd() == false) && (tuplo.isIs_long_method() == false))
+					this.ADCI++;
+
+				if((tuplo.isPmd() == false) && (tuplo.isIs_long_method() == true))
+					this.ADII++;
+
+			}
+			
+			if(ferramenta.equals("Uma regra qualquer")) {
+				
+			}
+		}
+		
+		List<Integer> listaContadores = new ArrayList<Integer>();
+		listaContadores.add(DCI);
+		listaContadores.add(DII);
+		listaContadores.add(ADCI);
+		listaContadores.add(ADII);
+		
+		return listaContadores;
+	}
+
+
+
+	
+	
 
 }

@@ -1,3 +1,4 @@
+package Essenciais;
 public class Tuplo {
 
 	private int id;
@@ -108,11 +109,11 @@ public class Tuplo {
 		this.is_feature_envy = is_feature_envy;
 	}
 
-	public int getCylo() {
+	public int getCyclo() {
 		return cyclo;
 	}
 
-	public void setCylo(int cylo) {
+	public void setCyclo(int cylo) {
 		this.cyclo = cylo;
 	}
 
@@ -120,7 +121,7 @@ public class Tuplo {
 		return classs;
 	}
 
-	public void setClasss(String classs) {
+	public void setClass(String classs) {
 		this.classs = classs;
 	}
 

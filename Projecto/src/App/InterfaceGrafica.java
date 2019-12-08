@@ -1,3 +1,4 @@
+package App;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -21,6 +22,9 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import Essenciais.ReadFile;
+import Essenciais.Tuplo;
+
 public class InterfaceGrafica {
 
 	private JFrame frame;
@@ -30,6 +34,8 @@ public class InterfaceGrafica {
 	private String fileName ;
 	private ReadFile lerFicheiro;
 	private JScrollPane barrinha;
+
+	
 
 
 	public InterfaceGrafica() {
@@ -167,17 +173,26 @@ public class InterfaceGrafica {
 		painel.add(definirThresholds);
 		painel.add(detetarDefeitos);
 
-		
-		
+
+
 		visualizarFicheiro();
 		frame.add(painel, BorderLayout.SOUTH);
 
 
+		JButton avaliarQualidade = new JButton("Avaliar qualidade");
+		avaliarQualidade.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+
 	}
 
 
-
-	private void visualizarFicheiro() {
+		private void visualizarFicheiro() {
 
 		DefaultTableModel dataModel = new DefaultTableModel();
 		dataModel.addColumn("MethodID");
@@ -196,7 +211,7 @@ public class InterfaceGrafica {
 		for(Tuplo tuplo: lerFicheiro.getMiniLista()) {
 
 			dataModel.addRow( new Object [] {tuplo.getId(), tuplo.getPackages(),tuplo.getClasss(), tuplo.getMetodo(), tuplo.getLoc(),
-					tuplo.getCylo(), tuplo.getAtfd(), tuplo.getLaa(), tuplo.isIs_long_method(),
+					tuplo.getCyclo(), tuplo.getAtfd(), tuplo.getLaa(), tuplo.isIs_long_method(),
 					tuplo.isPlasma(), tuplo.isPmd(), tuplo.isIs_feature_envy()});
 
 		}
@@ -207,8 +222,12 @@ public class InterfaceGrafica {
 		barrinha = new JScrollPane(table);
 		barrinha.setPreferredSize(new Dimension(400,300));
 		barrinha.setVisible(true);
-		
+
 		frame.add(barrinha, BorderLayout.NORTH);
 	}
+
+
+
+
 
 }
