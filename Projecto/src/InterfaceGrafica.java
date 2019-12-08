@@ -32,6 +32,8 @@ public class InterfaceGrafica {
 	private JScrollPane barrinha;
 
 
+	
+	
 	public InterfaceGrafica() {
 		lerFicheiro = new ReadFile();
 		while(!lerFicheiro.isFicheiro_encontrado()) {
