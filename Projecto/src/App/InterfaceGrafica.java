@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import Essenciais.ReadFile;
+import Essenciais.Regra;
 import Essenciais.Tuplo;
 
 public class InterfaceGrafica {
@@ -34,8 +35,10 @@ public class InterfaceGrafica {
 	private String fileName ;
 	private ReadFile lerFicheiro;
 	private JScrollPane barrinha;
+	private DefaultTableModel dataModel;
+	private JTable table;
 
-	
+
 
 
 	public InterfaceGrafica() {
@@ -57,13 +60,14 @@ public class InterfaceGrafica {
 		addFrameContent();
 		frame.pack();
 		frame.setResizable(false);
+		teste();
 		frame.setVisible(true);
 
 	}
 
 	public String askFileName() {
 		JFrame frame = new JFrame("Nome do Ficheiro");
-		fileName = JOptionPane.showInputDialog(frame, "Diga o nome do ficheiro:");
+		fileName = JOptionPane.showInputDialog(frame, "Diga o nome do ficheiro:", "Long-Method.xlsx");
 		return fileName;
 	}
 
@@ -100,45 +104,9 @@ public class InterfaceGrafica {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				MiniGUI miniGui = new MiniGUI(lerFicheiro);
 
-				janelaExibirMetricas = new JFrame("Escolha as métricas");
-				updateMetricas();
-
-
-				JButton escolher = new JButton("Escolher");
-				escolher.addActionListener(new ActionListener() {
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						//						String name = list.getSelectedValue();
-						//						System.out.println(name);
-						//
-						//						if(list.getSelectedIndex() >= 0) {
-						//
-						//							JFrame f1 = new JFrame ("Valores");
-						//							f1.setLayout(new BorderLayout());
-						//							f1.setPreferredSize(new Dimension(200,200));
-						//							f1.pack();
-						//							f1.setResizable(false);
-						//							f1.setVisible(true);
-						//
-						//							JTextArea area1 = new JTextArea();
-						//							area1.setPreferredSize(new Dimension (200,200));
-						//							area1.setVisible(true);
-						//							area1.setEditable(true);
-						//							String limite1 = area1.getText();
-						//							System.out.println(limite1);
-						//
-						//							f1.add(area1, BorderLayout.NORTH);
-						//
-						//						}
-
-
-					}
-				});
-
-
-				janelaExibirMetricas.add(escolher, BorderLayout.SOUTH);
 
 			}
 		});
@@ -150,7 +118,7 @@ public class InterfaceGrafica {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				//visualizarFicheiro();
+				visualizarFicheiro();
 
 			}
 		});
@@ -175,7 +143,7 @@ public class InterfaceGrafica {
 
 
 
-		visualizarFicheiro();
+		//visualizarFicheiro();
 		frame.add(painel, BorderLayout.SOUTH);
 
 
@@ -191,10 +159,21 @@ public class InterfaceGrafica {
 
 	}
 
+	public void teste() {
+		dataModel = new DefaultTableModel();
+		table = new JTable(dataModel);
+		table.setVisible(true);
+		barrinha = new JScrollPane(table);
+		barrinha.setPreferredSize(new Dimension(400,300));
+		barrinha.setVisible(true);
 
-		private void visualizarFicheiro() {
+		frame.add(barrinha, BorderLayout.NORTH);
+	}
 
-		DefaultTableModel dataModel = new DefaultTableModel();
+
+	private void visualizarFicheiro() {
+
+		//dataModel = new DefaultTableModel();
 		dataModel.addColumn("MethodID");
 		dataModel.addColumn("package");
 		dataModel.addColumn("class");
@@ -216,7 +195,7 @@ public class InterfaceGrafica {
 
 		}
 
-		JTable table = new JTable(dataModel);
+		table = new JTable(dataModel);
 		table.setVisible(true);
 
 		barrinha = new JScrollPane(table);
@@ -226,6 +205,11 @@ public class InterfaceGrafica {
 		frame.add(barrinha, BorderLayout.NORTH);
 	}
 
+
+	//		private void criaRegra() {
+	//			
+	//			Regra novaRegra = new Regra()
+	//		}
 
 
 

@@ -137,4 +137,8 @@ public class Tuplo {
 	public Tuplo getTuplo () {
 		return this;
 	}
+	
+	
+
+
 }
