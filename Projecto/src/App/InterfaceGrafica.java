@@ -185,7 +185,7 @@ public class InterfaceGrafica {
 		dataModel.addColumn("is_long_method");
 		dataModel.addColumn("iPlasma");
 		dataModel.addColumn("PMD");
-		dataModel.addColumn("is_feature_envy");
+		dataModel.addColumn("is_feature_envy");   
 
 		for(Tuplo tuplo: lerFicheiro.getMiniLista()) {
 

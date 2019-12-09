@@ -11,7 +11,7 @@ public class Regra {
 	private Atfd atfd;
 	private Laa laa;
 	
-	private boolean isLongMethod;
+	private boolean isLongMethod;   
 	private boolean isFeatureEnvy;
 	
 	public Regra(int locValor, int cycloValor, int atfdValor, int laaValor) {
