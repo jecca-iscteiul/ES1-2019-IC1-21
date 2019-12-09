@@ -206,12 +206,6 @@ public class InterfaceGrafica {
 	}
 
 
-	//		private void criaRegra() {
-	//			
-	//			Regra novaRegra = new Regra()
-	//		}
-
-
 
 
 }
