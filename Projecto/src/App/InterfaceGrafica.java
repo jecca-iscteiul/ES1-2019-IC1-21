@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
@@ -25,18 +26,19 @@ import javax.swing.table.TableModel;
 import Essenciais.ReadFile;
 import Essenciais.Regra;
 import Essenciais.Tuplo;
+import Essenciais.TuploRegra;
 
 public class InterfaceGrafica {
 
 	private JFrame frame;
-	private JList<Tuplo> list;
-	private DefaultListModel listModel = new DefaultListModel<>();
-	private JFrame janelaExibirMetricas;
 	private String fileName ;
 	private ReadFile lerFicheiro;
 	private JScrollPane barrinha;
 	private DefaultTableModel dataModel;
 	private JTable table;
+	
+	private JList<TuploRegra> listaRegras;
+	private DefaultListModel listModel = new DefaultListModel<>();
 
 
 
@@ -73,29 +75,17 @@ public class InterfaceGrafica {
 
 
 
-	private void updateList() {
-		int i =0;
-		//List<Tuplo> lista = lerFicheiro.getMiniLista();
+	private void updateList(TuploRegra regra) {
+		
+		listModel.addElement(regra);
 
-		for(Tuplo tuplo: lerFicheiro.getMiniLista()) {
-			listModel.add(i, tuplo);
-			i++;
-		}
-
-		list = new JList<>(listModel);
+		listaRegras= new JList<>(listModel);	
+		
+		
 
 	}
 
 
-	private void updateMetricas() {
-
-		janelaExibirMetricas.setLayout(new BorderLayout());
-		janelaExibirMetricas.setPreferredSize(new Dimension(300,300) );
-		janelaExibirMetricas.pack();
-		janelaExibirMetricas.setVisible(true);
-
-		updateList();
-	}
 
 	private void addFrameContent() {
 
