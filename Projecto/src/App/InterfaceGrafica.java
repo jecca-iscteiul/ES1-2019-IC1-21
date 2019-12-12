@@ -414,8 +414,6 @@ public class InterfaceGrafica {
 								for(TuploDefeito obj: lerFicheiro.detetarDefeitosRegraSimples(regrasSimples.get(txt))) 
 									tab.addRow(new Object [] {obj.getID(), obj.getMethodName(), jb.getText(), obj.getDefeitoName(), obj.isDefeitoTrue()});
 
-
-
 						}
 					}
 				}
