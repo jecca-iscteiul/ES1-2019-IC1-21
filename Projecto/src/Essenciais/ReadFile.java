@@ -191,9 +191,9 @@ public class ReadFile  {
 	
 	public List<TuploDefeito> detetarDefeitosRegraCombinada(RegraCombinada regra){
 		
-		List<TuploDefeito> lista1= detetarDefeitosRegraSimples(regra.getPrimeiraRegra());
-		
-		List<TuploDefeito> lista2= detetarDefeitosRegraSimples(regra.getSegundaRegra());
+//		List<TuploDefeito> lista1= detetarDefeitosRegraSimples(regra.getPrimeiraRegra());
+//		
+//		List<TuploDefeito> lista2= detetarDefeitosRegraSimples(regra.getSegundaRegra());
 		
 		List<Integer> ids = new ArrayList<Integer>();
 		
@@ -203,22 +203,22 @@ public class ReadFile  {
 		
 		if(operador.equals("E ")) {
 			// AQUI UM ELEMENTO TEM QUE ESTAR NAS DUAS LISTAS, PORQUE TEMOS UM AND
-						for(TuploDefeito tup: lista1) 
-							ids.add(tup.getID());
-						for(TuploDefeito tup: lista2)
-							if(ids.contains(tup.getID()))  // POR ISSO QUE SE VERIFICA SE O TUP QUE É DA LISTA1 TAMBÉM SE ENCONTRA NA LISTA2
-								listafinal.add(tup);
-
-							}else if(operador.equals("OU ")) {
-								 // AQUI TEM-SE UM OR, BASTA QUE O ELEMENTO ESTEJA EM UMA DESSAS LISTAS
-								for(TuploDefeito tup: lista1) {      
-									listafinal.add(tup);			//PERCORRE-SE AS DUAS LISTAS E ADICIONA-SE OS SEUS ELEMENTOS À LISTA FINAL
-										
-									ids.add(tup.getID());
-								}
-								for(TuploDefeito tup : lista2)
-									if(!ids.contains(tup.getID())) 
-										listafinal.add(tup);
+//						for(TuploDefeito tup: lista1) 
+//							ids.add(tup.getID());
+//						for(TuploDefeito tup: lista2)
+//							if(ids.contains(tup.getID()))  // POR ISSO QUE SE VERIFICA SE O TUP QUE É DA LISTA1 TAMBÉM SE ENCONTRA NA LISTA2
+//								listafinal.add(tup);
+//
+//							}else if(operador.equals("OU ")) {
+//								 // AQUI TEM-SE UM OR, BASTA QUE O ELEMENTO ESTEJA EM UMA DESSAS LISTAS
+//								for(TuploDefeito tup: lista1) {      
+//									listafinal.add(tup);			//PERCORRE-SE AS DUAS LISTAS E ADICIONA-SE OS SEUS ELEMENTOS À LISTA FINAL
+//										
+//									ids.add(tup.getID());
+//								}
+//								for(TuploDefeito tup : lista2)
+//									if(!ids.contains(tup.getID())) 
+//										listafinal.add(tup);
  
 							}
 		
