@@ -1,5 +1,6 @@
 package App;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -35,8 +36,9 @@ public class EvenSmallGUI {
 	public void inicializar() {
 		frame=new JFrame ("Add");		
 //		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.setLocation(900, 500);
-		frame.setSize(300, 150);
+//		frame.setLocation(900, 500);
+		frame.setPreferredSize(new Dimension(300, 150));
+		frame.pack();
 		frame.setResizable(true);
 		frame.setLayout(new BorderLayout());
 	}
@@ -56,7 +58,7 @@ public class EvenSmallGUI {
 		adicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					if(!verificacao(a.getText(), b.getText(), c.getText())) {
-						JOptionPane.showMessageDialog(new JFrame("Erro :("), "Daddos invÃ¡lidos, \n Tente outra vez :)"  );
+						JOptionPane.showMessageDialog(new JFrame("Erro :("), "Dados inválidos, \n Tente outra vez :)"  );
 					}else {
 						TuploRegra tuplo = new TuploRegra(minigui.getID(),a.getText(), b.getText(), c.getText());
 						minigui.trataTuplo(tuplo);
@@ -90,6 +92,8 @@ public class EvenSmallGUI {
 		}
 		return cadeado==3;
 	}
+	
+	
 	public boolean isNumeric(final String str) {
         if (str == null || str.length() == 0) {
             return false;
@@ -113,30 +117,37 @@ public class EvenSmallGUI {
 		JPanel painelB=new JPanel();
 		painelB.setLayout(new FlowLayout());
 		
-		JTextArea metrica = new JTextArea("MÃ©trica");
+		JTextArea metrica = new JTextArea("Métrica");
+		metrica.setEditable(false);
 		painelC.add(metrica);
-		JTextArea contas = new JTextArea(">=<");
+		
+		JTextArea contas = new JTextArea("Operadores: >, =, <");
+		contas.setEditable(false);
 		painelC.add(contas);
+		
 		JTextArea valor = new JTextArea("Valores");
+		valor.setEditable(false);
 		painelC.add(valor);
 		
 		a = new JTextField();
-//		a.setSize(10, 20);
+		a.setPreferredSize(new Dimension(60,20));
 		painelB.add(a);
+		
 		b = new JTextField();
-//		b.setSize(10, 20);
+		b.setPreferredSize(new Dimension(40,20));
 		painelB.add(b);
+		
 		c= new JTextField();
-//		c.setSize(10, 20);
+		c.setPreferredSize(new Dimension(60,20));
 		painelB.add(c);
 		
-		a.setText("_________");
-		b.setText("_____");
-		c.setText("_________");
 		
 		painel.add(painelC);
 		painel.add(painelB);
 		frame.add(painel);
 	}
+	
+	
+	
 	
 }
