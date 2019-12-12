@@ -20,7 +20,7 @@ private TuploRegra unicaRegra;
 	}
 	
 	public void isLongMethodTrue() {
-		this.isLongMethod = true;
+		this.isLongMethod = true;   
 		defeito = "is_long_method";
 	}
 	

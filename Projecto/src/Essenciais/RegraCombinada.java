@@ -26,7 +26,7 @@ public class RegraCombinada implements Regra {
 	
 	
 	
-	public RegraSimples getPrimeiraRegra() {
+	public RegraSimples getPrimeiraRegra() {    
 		return regra1;
 	}
 	
