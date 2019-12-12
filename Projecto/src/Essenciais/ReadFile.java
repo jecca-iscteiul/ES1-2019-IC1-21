@@ -220,9 +220,10 @@ public class ReadFile  {
 									if(!ids.contains(tup.getID())) 
 							
  
-		return listafinal;
+										return listafinal;
 
 		
+							}
 	}
 	
 	
