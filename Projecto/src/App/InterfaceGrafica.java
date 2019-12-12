@@ -1,5 +1,6 @@
 package App;
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -28,28 +29,59 @@ import javax.swing.table.TableModel;
 
 import Essenciais.*;
 
+/**
+ * 
+ * @author Irina Fernandes
+ * 
+ */
+
 public class InterfaceGrafica {
 
+	/**
+	 * Frame principal
+	 */
 	private JFrame frame;
+	
+	/**
+	 * Nome do ficheiro
+	 */
 	private String fileName ;
+	
+	/**
+	 * Objeto para ler o ficheiro selecionado
+	 */
 	private ReadFile lerFicheiro;
+	
 	private JScrollPane barrinha;
 	private DefaultTableModel dataModel;
 	private JTable table;
 
-	//lista regras
+	
 	private JList<String> listaRegras;
 	private DefaultListModel listModel = new DefaultListModel<>();
 	private int i=0;
 
+	/**
+	 * Uma lista de regras combinadas
+	 */
 	private List<RegraCombinada> regrasCombinadas= new ArrayList(15);
+	
+	/**
+	 * Uma lista de regras simples
+	 */
 	private List<RegraSimples> regrasSimples= new ArrayList(15);
 
+	/**
+	 * Um inteiro que serve para bloquear a leitura do ficheiro
+	 */
 	private int cadeado=0;
 
 	private MiniGUI miniGui;
 
 
+	/**
+	 * Cria uma nova interface gráfica
+	 */
 	public InterfaceGrafica() {
 		lerFicheiro = new ReadFile();
 		while(!lerFicheiro.isFicheiro_encontrado()) {
@@ -74,13 +106,19 @@ public class InterfaceGrafica {
 
 	}
 
+	/**
+	 * 
+	 * @return Nome do ficheiro
+	 */
 	public String askFileName() {
 		JFrame frame = new JFrame("Nome do Ficheiro");
 		fileName = JOptionPane.showInputDialog(frame, "Diga o nome do ficheiro:", "Long-Method.xlsx");
 		return fileName;
 	}
 
-
+	/**
+	 * Método para adicionar funcionalidades à Frame principal
+	 */
 	private void addFrameContent() {
 
 		JButton mostrarFicheiro = new JButton("Mostrar Ficheiro");
@@ -148,23 +186,34 @@ public class InterfaceGrafica {
 
 	}
 
-	public void updateListRegraCombinada(RegraCombinada regra) {
-		listModel.addElement("REGRA " + i + ":  Se (" + regra.getPrimeiraRegra() + regra.getOperador() + regra.getSegundaRegra() + ") ENTÃO " 
-				+ regra.getDefeito() + " TRUE");
-		regrasCombinadas.add(i, regra);
+	/**
+	 * 
+	 * @param regraCombinada {@link RegraCombinada} Atualiza a lista das regras combinadas
+	 */
+	public void updateListRegraCombinada(RegraCombinada regraCombinada) {
+		listModel.addElement("REGRA " + i + ":  Se (" + regraCombinada.getPrimeiraRegra() + regraCombinada.getOperador() + regraCombinada.getSegundaRegra() + ") ENTÃO " 
+				+ regraCombinada.getDefeito() + " TRUE");
+		regrasCombinadas.add(i, regraCombinada);
 		regrasSimples.add(null);
 		i++;
 	}
 
 
-	public void updateListRegraSimples(RegraSimples regra) {
-		listModel.addElement("REGRA " + i + ":  Se (" + regra.getUnicaRegra() + ") ENTÃO " + regra.getDefeito() + " TRUE");
-		regrasSimples.add(i, regra);
+	/**
+	 * 
+	 * @param regraSimples {@link RegraSimples} Atualiza a lista das regras simples
+	 */
+	public void updateListRegraSimples(RegraSimples regraSimples) {
+		listModel.addElement("REGRA " + i + ":  Se (" + regraSimples.getUnicaRegra() + ") ENTÃO " + regraSimples.getDefeito() + " TRUE");
+		regrasSimples.add(i, regraSimples);
 		regrasCombinadas.add(null);
 		i++;
 	}
 
 
+	/**
+	 * Método para avaliar a qualidade das regras criadas
+	 */
 	public void avaliarQualidade() {
 
 		JFrame result = new JFrame (" Avaliar qualidade das regras: ");
@@ -249,7 +298,9 @@ public class InterfaceGrafica {
 
 
 	
-	
+	/**
+	 * Método para detetar defeitos das ferramentas (iPlasma e PMD) e das regras criadas
+	 */
 	public void detetarDefeitos() {
 
 		JFrame result = new JFrame (" Detetar defeitos: ");
@@ -384,6 +435,9 @@ public class InterfaceGrafica {
 	}
 
 
+	/**
+	 * Método para visualizar o ficheiro selecionado na interface gráfica
+	 */
 	private void visualizarFicheiro() {
 
 		dataModel.addColumn("MethodID");
@@ -409,6 +463,10 @@ public class InterfaceGrafica {
 
 	}
 
+	/**
+	 * 
+	 * @return {@link InterfaceGrafica}
+	 */
 	public InterfaceGrafica thisGUI() {
 		return this;
 	}

@@ -1,6 +1,6 @@
 package Essenciais;
 
-public class RegraCombinada implements Regra {
+public class RegraCombinada {
 	
 	private RegraSimples regra1;
 	private String operador;

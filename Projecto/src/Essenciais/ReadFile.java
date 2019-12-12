@@ -551,38 +551,35 @@ public class ReadFile  {
 	}
 
 
-//	public int [] contadoresRegraCombinada (RegraCombinada regra) {
-//
-//		List <TuploDefeito>	lista = detetarDefeitosRegraCombinada(regra);
-//		List<Integer> ids = new ArrayList<Integer>();
-//
-//
-//
-//		for(Tuplo tuplo: getMiniLista()) 
-//			ids.add(tuplo.getId());
-//
-//
-//		for(TuploDefeito tup: lista) {
-//			if(regra.getPrimeiraRegra().getRegra().getUnicaRegra().getMetrica().equals("LOC")
-//					|| regra.getPrimeiraRegra().getRegra().getUnicaRegra().getMetrica().equals("CYCLO")){
-//
-//				if(ids.contains(tup.getID())) 
-//					this.DCI++;
-//				if(!ids.contains(tup.getID()))
-//					this.DII++;
-//				
-//				
-//			}
-//		}
-		
-//		for (Integer id: ids) {
-//			if()
-//		}
-//		
-	//	return ids;
+	public int [] contadoresRegraCombinada (RegraCombinada regra) {
+
+		List <TuploDefeito>	lista = detetarDefeitosRegraCombinada(regra);
+		List<Integer> ids = new ArrayList<Integer>();
+
+		for(Tuplo tuplo: getMiniLista()) 
+			ids.add(tuplo.getId());
+
+		for(TuploDefeito tup: lista) {
+			
+				if(ids.contains(tup.getID())) 
+					this.DCI++;
+				if(!ids.contains(tup.getID()))
+					this.DII++;
+				
+				
+			}
 		
 		
 		
+		
+		int [] listaContadores = new int [4];
+		listaContadores[0] = DCI;
+		listaContadores[1] = DII;
+		listaContadores[2] = ADCI;
+		listaContadores[3] = ADII;
+		this.DCI=0; this.DII=0; this.ADCI=0; this.ADII=0;
+
+		return listaContadores;
 		
 	}
 
@@ -590,7 +587,7 @@ public class ReadFile  {
 
 
 
-
+}
 
 
 
