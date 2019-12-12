@@ -24,10 +24,10 @@ public class ReadFile  {
 
 	//private List<Regra> lista;
 
-	private int DCI;	//  (PMI ou iPlasma) é TRUE e a coluna e is_long_method também é TRUE;
-	private int DII;	 // (PMI ou iPlasma) é TRUE e is_long_method é FALSE;
-	private int ADCI;   // (PMI ou iPlasma) é FALSE e a coluna is_long_method também é FALSE;
-	private int ADII;	//  (PMI ou iPlasma) é FALSE e is_long_method é TRUE.
+	private int DCI;	//  (PMI ou iPlasma) ï¿½ TRUE e a coluna e is_long_method tambï¿½m ï¿½ TRUE;
+	private int DII;	 // (PMI ou iPlasma) ï¿½ TRUE e is_long_method ï¿½ FALSE;
+	private int ADCI;   // (PMI ou iPlasma) ï¿½ FALSE e a coluna is_long_method tambï¿½m ï¿½ FALSE;
+	private int ADII;	//  (PMI ou iPlasma) ï¿½ FALSE e is_long_method ï¿½ TRUE.
 
 
 
@@ -160,17 +160,17 @@ public class ReadFile  {
 			for(TuploDefeito tup: lista1) 
 				ids.add(tup.getID());
 			for(TuploDefeito tup: lista2)
-				if(ids.contains(tup.getID()))  // POR ISSO QUE SE VERIFICA SE O TUP QUE É DA LISTA1 TAMBÉM SE ENCONTRA NA LISTA2
+				if(ids.contains(tup.getID()))  // POR ISSO QUE SE VERIFICA SE O TUP QUE ï¿½ DA LISTA1 TAMBï¿½M SE ENCONTRA NA LISTA2
 					listafinal.add(tup);
 
 
 		} else if(operador.equals("OU ")) {     // AQUI TEM-SE UM OR, BASTA QUE O ELEMENTO ESTEJA EM UMA DESSAS LISTAS
 			for(TuploDefeito tup: lista1) {      
-				listafinal.add(tup);			//PERCORRE-SE AS DUAS LISTAS E ADICIONA-SE OS SEUS ELEMENTOS À LISTA FINAL
+				listafinal.add(tup);			//PERCORRE-SE AS DUAS LISTAS E ADICIONA-SE OS SEUS ELEMENTOS ï¿½ LISTA FINAL
 				ids.add(tup.getID());
 			}
 			for(TuploDefeito tup: lista2)
-				if(!ids.contains(tup.getID()))    // MAS DEVE-SE VERIFICAR SE O TUP JÁ NÃO SE ENCONTRA NA LISTAFINAL, PARA NÃO HAVER DUPLICADOS
+				if(!ids.contains(tup.getID()))    // MAS DEVE-SE VERIFICAR SE O TUP Jï¿½ Nï¿½O SE ENCONTRA NA LISTAFINAL, PARA Nï¿½O HAVER DUPLICADOS
 					listafinal.add(tup);
 		}
 
@@ -243,7 +243,7 @@ public class ReadFile  {
 	}
 
 
-	public List<Integer> contadoresIPlasma () {  // os contadores são retornados por essa ordem: DCI, DII, ADCI e ADII
+	public List<Integer> contadoresIPlasma () {  // os contadores sï¿½o retornados por essa ordem: DCI, DII, ADCI e ADII
 
 		for(Tuplo tuplo: getMiniLista()) {
 
@@ -274,7 +274,7 @@ public class ReadFile  {
 
 
 
-	public List<Integer> contadoresPMD () {  // os contadores são retornados por essa ordem: DCI, DII, ADCI e ADII
+	public List<Integer> contadoresPMD () {  // os contadores sï¿½o retornados por essa ordem: DCI, DII, ADCI e ADII
 
 		for(Tuplo tuplo: getMiniLista()) {
 
@@ -303,7 +303,7 @@ public class ReadFile  {
 	}
 
 
-	public int [] contadoresRegraSimples (RegraSimples regra) {  // os contadores são retornados por essa ordem: DCI, DII, ADCI e ADII
+	public int [] contadoresRegraSimples (RegraSimples regra) {  // os contadores sï¿½o retornados por essa ordem: DCI, DII, ADCI e ADII
 
 		String metrica = regra.getUnicaRegra().getMetrica();
 		String operador = regra.getUnicaRegra().getContas();
@@ -477,10 +477,10 @@ public class ReadFile  {
 			}
 		}
 		
-		for (Integer id: ids) {
-			if()
-		}
-		
+//		for (Integer id: ids) {
+//			if()
+//		}
+//		
 	//	return ids;
 		
 		
