@@ -78,27 +78,8 @@ public class ReadFile  {
 			//			e.printStackTrace();
 			this.ficheiro_encontrado=false;
 		}
-		//   teste();
+		
 	}
-
-	public void teste() {
-		for (Tuplo tuplo : miniLista) {
-			System.out.println("--------------------------");
-			System.out.println(tuplo.getId());
-			System.out.println(tuplo.getPackages());
-			System.out.println(tuplo.getClass());
-			System.out.println(tuplo.getMetodo());
-			System.out.println(tuplo.getLoc());
-			System.out.println(tuplo.getCyclo());
-			System.out.println(tuplo.getAtfd());
-			System.out.println(tuplo.getLaa());
-			System.out.println(tuplo.isIs_long_method());
-			System.out.println(tuplo.isPlasma());
-			System.out.println(tuplo.isPmd());
-			System.out.println(tuplo.isIs_feature_envy());
-		}
-	}
-
 
 	public String getnomeFicheiro() {
 		return nomeFicheiro;
