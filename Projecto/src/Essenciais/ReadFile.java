@@ -3,9 +3,7 @@ import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Cell;
@@ -163,7 +161,126 @@ public class ReadFile  {
 		return listaContadores;
 	}
 
+	public List<TuploDefeito> detetarDefeitosRegraSimples(RegraSimples regra) {
 
+		List<TuploDefeito> lista = new ArrayList<TuploDefeito>();
+
+		String metrica = regra.getUnicaRegra().getMetrica();
+		double valor = Double.parseDouble(regra.getUnicaRegra().getValor());
+
+		String contas = regra.getUnicaRegra().getContas();
+
+
+		for(Tuplo tuplo: miniLista) {
+
+			if(metrica.equals("LAA")) {
+
+				if(contas.equals("<")) {
+					if(tuplo.getLaa() < valor)
+						lista.add(new TuploDefeito(tuplo.getId(), tuplo.getMetodo(), regra.toString(), "is_feature_envy", true));
+
+				} else if (contas.equals(">"))
+					if(tuplo.getLaa() > valor)
+						lista.add(new TuploDefeito(tuplo.getId(), tuplo.getMetodo(), regra.toString(), "is_feature_envy",  true));
+
+
+			} else if( metrica.equals("ATFD")) {
+
+				if(contas.equals("<")) {
+					if(tuplo.getAtfd() < valor)
+						lista.add(new TuploDefeito(tuplo.getId(), tuplo.getMetodo(), regra.toString(), "is_feature_envy", true));
+
+				} else if (contas.equals(">"))
+					if(tuplo.getAtfd() > valor)
+						lista.add(new TuploDefeito(tuplo.getId(), tuplo.getMetodo(), regra.toString(), "is_feature_envy", true));
+
+			} else if( metrica.equals("LOC")) {
+
+				if(contas.equals("<")) {
+					if(tuplo.getLoc() < valor)
+						lista.add(new TuploDefeito(tuplo.getId(), tuplo.getMetodo(), regra.toString(), "is_long_method", true));
+
+				} else if (contas.equals(">"))
+					if(tuplo.getLoc() > valor)
+						lista.add(new TuploDefeito(tuplo.getId(), tuplo.getMetodo(), regra.toString(), "is_long_method", true));
+
+
+			} else if( metrica.equals("CYCLO")) {
+
+				if(contas.equals("<")) {
+					if(tuplo.getCyclo() < valor)
+						lista.add(new TuploDefeito(tuplo.getId(), tuplo.getMetodo(), regra.toString(), "is_long_method", true));
+
+				} else if (contas.equals(">"))
+					if(tuplo.getCyclo() > valor)
+						lista.add(new TuploDefeito(tuplo.getId(), tuplo.getMetodo(), regra.toString(), "is_long_method", true));
+			}
+
+		}
+
+		return lista;
+
+	}
+
+
+	public List<Integer> contadoresIPlasma () {  // os contadores são retornados por essa ordem: DCI, DII, ADCI e ADII
+
+		for(Tuplo tuplo: getMiniLista()) {
+
+			if((tuplo.isPlasma() == true) && (tuplo.isIs_long_method() == true)) 
+				this.DCI++;	
+
+			if((tuplo.isPlasma() == true) && (tuplo.isIs_long_method() == false))
+				this.DII++;
+
+			if((tuplo.isPlasma() == false) && (tuplo.isIs_long_method() == false))
+				this.ADCI++;
+
+			if((tuplo.isPlasma() == false) && (tuplo.isIs_long_method() == true)) 
+				this.ADII++; 
+
+		}
+
+		List<Integer> listaContadores = new ArrayList<Integer>();
+		listaContadores.add(DCI);
+		listaContadores.add(DII);
+		listaContadores.add(ADCI);
+		listaContadores.add(ADII);
+		DCI=0; DII=0; ADCI=0; ADII=0;
+
+		return listaContadores;
+	}
+
+
+
+
+	public List<Integer> contadoresPMD () {  // os contadores são retornados por essa ordem: DCI, DII, ADCI e ADII
+
+		for(Tuplo tuplo: getMiniLista()) {
+
+			if((tuplo.isPmd() == true) && (tuplo.isIs_long_method() == true))
+				this.DCI++;
+
+			if((tuplo.isPmd() == true) && (tuplo.isIs_long_method() == false))
+				this.DII++;
+
+			if((tuplo.isPmd() == false) && (tuplo.isIs_long_method() == false))
+				this.ADCI++;
+
+			if((tuplo.isPmd() == false) && (tuplo.isIs_long_method() == true))
+				this.ADII++;
+		}
+
+		List<Integer> listaContadores = new ArrayList<Integer>();
+		listaContadores.add(DCI);
+		listaContadores.add(DII);
+		listaContadores.add(ADCI);
+		listaContadores.add(ADII);
+		DCI=0; DII=0; ADCI=0; ADII=0;
+
+		return listaContadores;
+
+	}
 
 	
 	
