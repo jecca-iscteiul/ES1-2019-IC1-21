@@ -218,12 +218,11 @@ public class ReadFile  {
 								}
 								for(TuploDefeito tup : lista2)
 									if(!ids.contains(tup.getID())) 
-							
+										listafinal.add(tup);
  
-										return listafinal;
-
-		
 							}
+		
+		return listafinal;
 	}
 	
 	
