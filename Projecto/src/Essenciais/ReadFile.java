@@ -3,9 +3,7 @@ import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Cell;
@@ -24,10 +22,10 @@ public class ReadFile  {
 
 	//private List<Regra> lista;
 
-	private int DCI;	//  (PMI ou iPlasma) é TRUE e a coluna e is_long_method também é TRUE;
-	private int DII;	 // (PMI ou iPlasma) é TRUE e is_long_method é FALSE;
-	private int ADCI;   // (PMI ou iPlasma) é FALSE e a coluna is_long_method também é FALSE;
-	private int ADII;	//  (PMI ou iPlasma) é FALSE e is_long_method é TRUE.
+	private int DCI;	//  (PMI ou iPlasma) ï¿½ TRUE e a coluna e is_long_method tambï¿½m ï¿½ TRUE;
+	private int DII;	 // (PMI ou iPlasma) ï¿½ TRUE e is_long_method ï¿½ FALSE;
+	private int ADCI;   // (PMI ou iPlasma) ï¿½ FALSE e a coluna is_long_method tambï¿½m ï¿½ FALSE;
+	private int ADII;	//  (PMI ou iPlasma) ï¿½ FALSE e is_long_method ï¿½ TRUE.
 
 
 
@@ -141,17 +139,17 @@ public class ReadFile  {
 			for(TuploDefeito tup: lista1) 
 				ids.add(tup.getID());
 			for(TuploDefeito tup: lista2)
-				if(ids.contains(tup.getID()))  // POR ISSO QUE SE VERIFICA SE O TUP QUE É DA LISTA1 TAMBÉM SE ENCONTRA NA LISTA2
+				if(ids.contains(tup.getID()))  // POR ISSO QUE SE VERIFICA SE O TUP QUE ï¿½ DA LISTA1 TAMBï¿½M SE ENCONTRA NA LISTA2
 					listafinal.add(tup);
 
 
 		} else if(operador.equals("OU ")) {     // AQUI TEM-SE UM OR, BASTA QUE O ELEMENTO ESTEJA EM UMA DESSAS LISTAS
 			for(TuploDefeito tup: lista1) {      
-				listafinal.add(tup);			//PERCORRE-SE AS DUAS LISTAS E ADICIONA-SE OS SEUS ELEMENTOS À LISTA FINAL
+				listafinal.add(tup);			//PERCORRE-SE AS DUAS LISTAS E ADICIONA-SE OS SEUS ELEMENTOS ï¿½ LISTA FINAL
 				ids.add(tup.getID());
 			}
 			for(TuploDefeito tup: lista2)
-				if(!ids.contains(tup.getID()))    // MAS DEVE-SE VERIFICAR SE O TUP JÁ NÃO SE ENCONTRA NA LISTAFINAL, PARA NÃO HAVER DUPLICADOS
+				if(!ids.contains(tup.getID()))    // MAS DEVE-SE VERIFICAR SE O TUP Jï¿½ Nï¿½O SE ENCONTRA NA LISTAFINAL, PARA Nï¿½O HAVER DUPLICADOS
 					listafinal.add(tup);
 		}
 
@@ -161,6 +159,96 @@ public class ReadFile  {
 
 	////////////////////////
 
+
+//	public List<TuploDefeito> detetarDefeitosRegraSimples(RegraSimples regra) {
+//
+//		List<TuploDefeito> lista = new ArrayList<TuploDefeito>();
+//
+//		String metrica = regra.getUnicaRegra().getMetrica();
+//		double valor = Double.parseDouble(regra.getUnicaRegra().getValor());
+//
+//		String contas = regra.getUnicaRegra().getContas();
+//
+//
+//		for(Tuplo tuplo: miniLista) {
+//
+//			if(metrica.equals("LAA")) {
+//
+//				if(contas.equals("<")) {
+//					if(tuplo.getLaa() < valor)
+//						lista.add(new TuploDefeito(tuplo.getId(), tuplo.getMetodo(), regra.toString(), "is_feature_envy", true));
+//
+//				} else if (contas.equals(">"))
+//					if(tuplo.getLaa() > valor)
+//						lista.add(new TuploDefeito(tuplo.getId(), tuplo.getMetodo(), regra.toString(), "is_feature_envy",  true));
+//
+//
+//			} else if( metrica.equals("ATFD")) {
+//
+//				if(contas.equals("<")) {
+//					if(tuplo.getAtfd() < valor)
+//						lista.add(new TuploDefeito(tuplo.getId(), tuplo.getMetodo(), regra.toString(), "is_feature_envy", true));
+//
+//				} else if (contas.equals(">"))
+//					if(tuplo.getAtfd() > valor)
+//						lista.add(new TuploDefeito(tuplo.getId(), tuplo.getMetodo(), regra.toString(), "is_feature_envy", true));
+//
+//			} else if( metrica.equals("LOC")) {
+//
+//				if(contas.equals("<")) {
+//					if(tuplo.getLoc() < valor)
+//						lista.add(new TuploDefeito(tuplo.getId(), tuplo.getMetodo(), regra.toString(), "is_long_method", true));
+//
+//				} else if (contas.equals(">"))
+//					if(tuplo.getLoc() > valor)
+//						lista.add(new TuploDefeito(tuplo.getId(), tuplo.getMetodo(), regra.toString(), "is_long_method", true));
+//
+//
+//			} else if( metrica.equals("CYCLO")) {
+//
+//				if(contas.equals("<")) {
+//					if(tuplo.getCyclo() < valor)
+//						lista.add(new TuploDefeito(tuplo.getId(), tuplo.getMetodo(), regra.toString(), "is_long_method", true));
+//
+//				} else if (contas.equals(">"))
+//					if(tuplo.getCyclo() > valor)
+//						lista.add(new TuploDefeito(tuplo.getId(), tuplo.getMetodo(), regra.toString(), "is_long_method", true));
+//			}
+//
+//		}
+//
+//		return lista;
+//
+//	}
+
+
+	public List<Integer> contadoresIPlasma () {  // os contadores sï¿½o retornados por essa ordem: DCI, DII, ADCI e ADII
+
+		for(Tuplo tuplo: getMiniLista()) {
+
+			if((tuplo.isPlasma() == true) && (tuplo.isIs_long_method() == true)) 
+				this.DCI++;	
+
+			if((tuplo.isPlasma() == true) && (tuplo.isIs_long_method() == false))
+				this.DII++;
+
+			if((tuplo.isPlasma() == false) && (tuplo.isIs_long_method() == false))
+				this.ADCI++;
+
+			if((tuplo.isPlasma() == false) && (tuplo.isIs_long_method() == true)) 
+				this.ADII++; 
+
+		}
+
+		List<Integer> listaContadores = new ArrayList<Integer>();
+		listaContadores.add(DCI);
+		listaContadores.add(DII);
+		listaContadores.add(ADCI);
+		listaContadores.add(ADII);
+		DCI=0; DII=0; ADCI=0; ADII=0;
+
+		return listaContadores;
+	}
 
 	public List<TuploDefeito> detetarDefeitosRegraSimples(RegraSimples regra) {
 
@@ -223,39 +311,39 @@ public class ReadFile  {
 
 	}
 
-
-	public List<Integer> contadoresIPlasma () {  // os contadores são retornados por essa ordem: DCI, DII, ADCI e ADII
-
-		for(Tuplo tuplo: getMiniLista()) {
-
-			if((tuplo.isPlasma() == true) && (tuplo.isIs_long_method() == true)) 
-				this.DCI++;	
-
-			if((tuplo.isPlasma() == true) && (tuplo.isIs_long_method() == false))
-				this.DII++;
-
-			if((tuplo.isPlasma() == false) && (tuplo.isIs_long_method() == false))
-				this.ADCI++;
-
-			if((tuplo.isPlasma() == false) && (tuplo.isIs_long_method() == true)) 
-				this.ADII++; 
-
-		}
-
-		List<Integer> listaContadores = new ArrayList<Integer>();
-		listaContadores.add(DCI);
-		listaContadores.add(DII);
-		listaContadores.add(ADCI);
-		listaContadores.add(ADII);
-		DCI=0; DII=0; ADCI=0; ADII=0;
-
-		return listaContadores;
-	}
-
-
+//
+//	public List<Integer> contadoresIPlasma () {  // os contadores sï¿½o retornados por essa ordem: DCI, DII, ADCI e ADII
+//
+//		for(Tuplo tuplo: getMiniLista()) {
+//
+//			if((tuplo.isPlasma() == true) && (tuplo.isIs_long_method() == true)) 
+//				this.DCI++;	
+//
+//			if((tuplo.isPlasma() == true) && (tuplo.isIs_long_method() == false))
+//				this.DII++;
+//
+//			if((tuplo.isPlasma() == false) && (tuplo.isIs_long_method() == false))
+//				this.ADCI++;
+//
+//			if((tuplo.isPlasma() == false) && (tuplo.isIs_long_method() == true)) 
+//				this.ADII++; 
+//
+//		}
+//
+//		List<Integer> listaContadores = new ArrayList<Integer>();
+//		listaContadores.add(DCI);
+//		listaContadores.add(DII);
+//		listaContadores.add(ADCI);
+//		listaContadores.add(ADII);
+//		DCI=0; DII=0; ADCI=0; ADII=0;
+//
+//		return listaContadores;
+//	}
 
 
-	public List<Integer> contadoresPMD () {  // os contadores são retornados por essa ordem: DCI, DII, ADCI e ADII
+
+
+	public List<Integer> contadoresPMD () {  // os contadores sï¿½o retornados por essa ordem: DCI, DII, ADCI e ADII
 
 		for(Tuplo tuplo: getMiniLista()) {
 
@@ -284,7 +372,36 @@ public class ReadFile  {
 	}
 
 
-	public int [] contadoresRegraSimples (RegraSimples regra) {  // os contadores são retornados por essa ordem: DCI, DII, ADCI e ADII
+//	public List<Integer> contadoresPMD () {  // os contadores sï¿½o retornados por essa ordem: DCI, DII, ADCI e ADII
+//
+//		for(Tuplo tuplo: getMiniLista()) {
+//
+//			if((tuplo.isPmd() == true) && (tuplo.isIs_long_method() == true))
+//				this.DCI++;
+//
+//			if((tuplo.isPmd() == true) && (tuplo.isIs_long_method() == false))
+//				this.DII++;
+//
+//			if((tuplo.isPmd() == false) && (tuplo.isIs_long_method() == false))
+//				this.ADCI++;
+//
+//			if((tuplo.isPmd() == false) && (tuplo.isIs_long_method() == true))
+//				this.ADII++;
+//		}
+//
+//		List<Integer> listaContadores = new ArrayList<Integer>();
+//		listaContadores.add(DCI);
+//		listaContadores.add(DII);
+//		listaContadores.add(ADCI);
+//		listaContadores.add(ADII);
+//		DCI=0; DII=0; ADCI=0; ADII=0;
+//
+//		return listaContadores;
+//
+//	}
+
+
+	public int [] contadoresRegraSimples (RegraSimples regra) {  // os contadores sï¿½o retornados por essa ordem: DCI, DII, ADCI e ADII
 
 		String metrica = regra.getUnicaRegra().getMetrica();
 		String operador = regra.getUnicaRegra().getContas();
@@ -434,34 +551,34 @@ public class ReadFile  {
 	}
 
 
-	public int [] contadoresRegraCombinada (RegraCombinada regra) {
-
-		List <TuploDefeito>	lista = detetarDefeitosRegraCombinada(regra);
-		List<Integer> ids = new ArrayList<Integer>();
-
-
-
-		for(Tuplo tuplo: getMiniLista()) 
-			ids.add(tuplo.getId());
-
-
-		for(TuploDefeito tup: lista) {
-			if(regra.getPrimeiraRegra().getRegra().getUnicaRegra().getMetrica().equals("LOC")
-					|| regra.getPrimeiraRegra().getRegra().getUnicaRegra().getMetrica().equals("CYCLO")){
-
-				if(ids.contains(tup.getID())) 
-					this.DCI++;
-				if(!ids.contains(tup.getID()))
-					this.DII++;
-				
-				
-			}
-		}
+//	public int [] contadoresRegraCombinada (RegraCombinada regra) {
+//
+//		List <TuploDefeito>	lista = detetarDefeitosRegraCombinada(regra);
+//		List<Integer> ids = new ArrayList<Integer>();
+//
+//
+//
+//		for(Tuplo tuplo: getMiniLista()) 
+//			ids.add(tuplo.getId());
+//
+//
+//		for(TuploDefeito tup: lista) {
+//			if(regra.getPrimeiraRegra().getRegra().getUnicaRegra().getMetrica().equals("LOC")
+//					|| regra.getPrimeiraRegra().getRegra().getUnicaRegra().getMetrica().equals("CYCLO")){
+//
+//				if(ids.contains(tup.getID())) 
+//					this.DCI++;
+//				if(!ids.contains(tup.getID()))
+//					this.DII++;
+//				
+//				
+//			}
+//		}
 		
-		for (Integer id: ids) {
-			if()
-		}
-		
+//		for (Integer id: ids) {
+//			if()
+//		}
+//		
 	//	return ids;
 		
 		
@@ -481,6 +598,6 @@ public class ReadFile  {
 
 
 
-}
+
 
 
