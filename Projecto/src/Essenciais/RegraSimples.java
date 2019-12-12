@@ -7,7 +7,7 @@ private TuploRegra unicaRegra;
 	private boolean isLongMethod;   
 	private boolean isFeatureEnvy;
 
-	private String defeito;
+	private String defeito;   
 	
 
 	public RegraSimples(TuploRegra apenasUmaRegra) {

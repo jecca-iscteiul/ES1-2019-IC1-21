@@ -15,7 +15,7 @@ public class RegraCombinada implements Regra {
 		this.regra1 = regra1;
 		this.operador = operador;
 		this.regra2 = regra2;
-	}
+	}   
 	
 	
 
