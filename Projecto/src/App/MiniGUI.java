@@ -73,9 +73,7 @@ public class MiniGUI {
 
 	private void inicializar() {
 		frame= new JFrame (lerFicheiro.getnomeFicheiro() + "--> Definir Thresholds");
-		//frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		//frame.setLocation(900, 50);
-		frame.setPreferredSize(new Dimension(650, 400));
+		frame.setPreferredSize(new Dimension(750, 400));
 		frame.pack();
 		frame.setResizable(true);
 		frame.setLayout(new BorderLayout());
@@ -85,7 +83,7 @@ public class MiniGUI {
 		JPanel painel_baixo=new JPanel();
 		painel_baixo.setLayout(new FlowLayout());
 
-		String linha = "adicionar,combinar,guardar";
+		String linha = "Adicionar,Criar regra combinada,Criar regra simples";
 		String[] vetor = linha.split(",");
 		lista_botoes=new JButton[vetor.length];
 		for(int i=0; i!=vetor.length;i++) {
@@ -97,15 +95,15 @@ public class MiniGUI {
 			lista_botoes[i].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					switch(e.getActionCommand().toString()) {
-					case "adicionar": 
+					case "Adicionar": 
 						new EvenSmallGUI(mini);
 						break;
-					case "combinar": 
+					case "Criar regra combinada": 
 						criaRegraCombinada();
 						frame.dispose();
 
 						break;
-					case "guardar":
+					case "Criar regra simples":
 						criaRegraSimples();
 						frame.dispose();
 						break;
@@ -221,17 +219,6 @@ public class MiniGUI {
 			}
 		});
 	}
-
-
-	public ArrayList<TuploRegra> getListTuplos() {
-		return auxTuploRegras;
-	}
-
-	//	public ArrayList<Regra> getListRegras() {
-	//		return listaRegras;
-	//	}
-
-
 
 
 }

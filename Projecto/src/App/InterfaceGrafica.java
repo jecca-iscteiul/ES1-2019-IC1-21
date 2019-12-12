@@ -41,31 +41,32 @@ public class InterfaceGrafica {
 	 * Frame principal
 	 */
 	private JFrame frame;
-	
+
 	/**
 	 * Nome do ficheiro
 	 */
 	private String fileName ;
-	
+
 	/**
 	 * Objeto para ler o ficheiro selecionado
 	 */
 	private ReadFile lerFicheiro;
-	
+
 	private JScrollPane barrinha;
 	private DefaultTableModel dataModel;
 	private JTable table;
 
-	
+
 	private JList<String> listaRegras;
 	private DefaultListModel listModel = new DefaultListModel<>();
 	private int i=0;
+	private int j=0;
 
 	/**
 	 * Uma lista de regras combinadas
 	 */
 	private List<RegraCombinada> regrasCombinadas= new ArrayList(15);
-	
+
 	/**
 	 * Uma lista de regras simples
 	 */
@@ -135,7 +136,7 @@ public class InterfaceGrafica {
 			}
 		});
 
-		JButton definirThresholds = new JButton("Definir thresholds");
+		JButton definirThresholds = new JButton("Definir regras e thresholds");
 		definirThresholds.addActionListener(new ActionListener() {
 
 			@Override
@@ -160,16 +161,29 @@ public class InterfaceGrafica {
 			}
 		});
 
-		JButton avaliarQualidade = new JButton("Avaliar qualidade");
+		JButton avaliarQualidade = new JButton("Avaliar qualidade de regras");
 		avaliarQualidade.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			avaliarQualidade();
+				avaliarQualidade();
 
 			}
 		});
 
+		JButton apagarRegra = new JButton("Apagar regra");
+		apagarRegra.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				int index =(listaRegras.getSelectedIndex()+j);
+				apagarRegra(index);
+				j++;
+
+
+			}
+		});
 
 		JPanel painel = new JPanel();
 		painel.setBackground(Color.gray);
@@ -177,6 +191,7 @@ public class InterfaceGrafica {
 		painel.add(definirThresholds);
 		painel.add(detetarDefeitos);
 		painel.add(avaliarQualidade);
+		painel.add(apagarRegra);
 
 		listaRegras = new JList<>(listModel);
 		listaRegras.setName("Regras criadas: ");
@@ -185,6 +200,13 @@ public class InterfaceGrafica {
 		frame.add(painel, BorderLayout.SOUTH);
 
 	}
+
+
+	public void apagarRegra(int i) {
+		listModel.remove(i);
+		listaRegras = new JList<>(listModel);
+	}
+	
 
 	/**
 	 * 
@@ -224,7 +246,7 @@ public class InterfaceGrafica {
 
 		JFrame fr = new JFrame();
 		fr.setLayout(new BorderLayout());
-		fr.setPreferredSize(new Dimension(400, 400));
+		fr.setPreferredSize(new Dimension(400, 100));
 		fr.pack();		
 
 		DefaultTableModel tab = new DefaultTableModel();
@@ -236,6 +258,14 @@ public class InterfaceGrafica {
 		JPanel painel = new JPanel();
 		painel.setLayout(new GridLayout(10,1));
 		painel.setPreferredSize(new Dimension(300,200));
+
+		JRadioButton iplasma = new JRadioButton("iPlasma");
+		iplasma.setBounds(100,50,100,30);  
+		painel.add(iplasma);
+
+		JRadioButton pmd = new JRadioButton("PMD");
+		pmd.setBounds(100,50,100,30);  
+		painel.add(pmd);
 
 		List<JRadioButton> bt = new ArrayList<JRadioButton>();
 
@@ -254,42 +284,50 @@ public class InterfaceGrafica {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				for (JRadioButton jb: bt) {
-					if(jb.isSelected()) {
-						int txt = Character.getNumericValue(jb.getText().charAt(6));
+				if(iplasma.isSelected()) {
 
-						if(jb.getText().length() < 55) {
-							System.out.println(regrasSimples.get(txt));
-							int [] lista = lerFicheiro.contadoresRegraSimples(regrasSimples.get(txt)) ;
-							//System.out.println(lista);
-							tab.addRow(new Object [] {lista[0], lista[1], lista[2], lista[3]});
+					int [] lista = lerFicheiro.contadoresIPlasma();
+					tab.addRow(new Object [] {lista[0], lista[1], lista[2], lista[3]});
 
-						} else {
-							int [] lista = lerFicheiro.contadoresRegraSimples(regrasSimples.get(txt)) ;
-							tab.addRow(new Object [] {lista[0], lista[1], lista[2], lista[3]});
+
+				} else if(pmd.isSelected()) {
+					int [] lista = lerFicheiro.contadoresPMD();
+					tab.addRow(new Object [] {lista[0], lista[1], lista[2], lista[3]});
+
+				} else {
+
+					for (JRadioButton jb: bt) {
+						if(jb.isSelected()) {
+							int txt = Character.getNumericValue(jb.getText().charAt(6));
+
+							if(jb.getText().length() < 55) {
+								int [] lista = lerFicheiro.contadoresRegraSimples(regrasSimples.get(txt)) ;
+								tab.addRow(new Object [] {lista[0], lista[1], lista[2], lista[3]});
+
+							} else {
+								int [] lista = lerFicheiro.contadoresRegraCombinada(regrasCombinadas.get(txt)) ;
+								tab.addRow(new Object [] {lista[0], lista[1], lista[2], lista[3]});
+							}
+
 						}
-
-						JTable table = new JTable(tab);
-						//table.setPreferredSize(new Dimension(400, 400));
-						table.setVisible(true);
-						
-
-						JScrollPane bar = new JScrollPane(table);
-						bar.setPreferredSize(new Dimension(400,300));
-						bar.setVisible(true);
-
-						fr.add(bar, BorderLayout.CENTER);
-						fr.setVisible(true);
-
 					}
 				}
+				JTable table = new JTable(tab);
+				table.setVisible(true);
 
+
+				JScrollPane bar = new JScrollPane(table);
+				bar.setPreferredSize(new Dimension(400,300));
+				bar.setVisible(true);
+
+				fr.add(bar, BorderLayout.CENTER);
+				fr.setVisible(true);
 
 			}
 		});
-		
+
 		painel.setVisible(true);
-		
+
 		result.add(painel, BorderLayout.NORTH);
 		result.add(ok, BorderLayout.SOUTH);
 		result.setVisible(true);
@@ -297,7 +335,7 @@ public class InterfaceGrafica {
 	}
 
 
-	
+
 	/**
 	 * Método para detetar defeitos das ferramentas (iPlasma e PMD) e das regras criadas
 	 */
@@ -357,29 +395,11 @@ public class InterfaceGrafica {
 					for(TuploDefeito obj: lerFicheiro.detetarDefeitosIPlasma()) 
 						tab.addRow(new Object [] {obj.getID(), obj.getMethodName(), obj.getFerramenta(), obj.getDefeitoName(), obj.isDefeitoTrue()});
 
-					JTable table = new JTable(tab);
-					table.setVisible(true);
-
-					JScrollPane bar = new JScrollPane(table);
-					bar.setPreferredSize(new Dimension(400,300));
-					bar.setVisible(true);
-
-					fr.add(bar, BorderLayout.CENTER);
-					fr.setVisible(true);
 
 				} else if(pmd.isSelected()) {
 					for(TuploDefeito obj: lerFicheiro.detetarDefeitosPMD())
 						tab.addRow(new Object [] {obj.getID(), obj.getMethodName(), obj.getFerramenta(), obj.getDefeitoName(), obj.isDefeitoTrue()});
 
-					JTable table = new JTable(tab);
-					table.setVisible(true);
-
-					JScrollPane bar = new JScrollPane(table);
-					bar.setPreferredSize(new Dimension(400,300));
-					bar.setVisible(true);
-
-					fr.add(bar, BorderLayout.CENTER);
-					fr.setVisible(true);
 
 				} else {
 					for (JRadioButton jb: bt) {
@@ -394,19 +414,21 @@ public class InterfaceGrafica {
 								for(TuploDefeito obj: lerFicheiro.detetarDefeitosRegraSimples(regrasSimples.get(txt))) 
 									tab.addRow(new Object [] {obj.getID(), obj.getMethodName(), jb.getText(), obj.getDefeitoName(), obj.isDefeitoTrue()});
 
-							JTable table = new JTable(tab);
-							table.setVisible(true);
 
-							JScrollPane bar = new JScrollPane(table);
-							bar.setPreferredSize(new Dimension(400,300));
-							bar.setVisible(true);
-
-							fr.add(bar, BorderLayout.CENTER);
-							fr.setVisible(true);
 
 						}
 					}
 				}
+
+				JTable table = new JTable(tab);
+				table.setVisible(true);
+
+				JScrollPane bar = new JScrollPane(table);
+				bar.setPreferredSize(new Dimension(400,300));
+				bar.setVisible(true);
+
+				fr.add(bar, BorderLayout.CENTER);
+				fr.setVisible(true);
 			}
 		});
 
