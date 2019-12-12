@@ -1,3 +1,4 @@
+package App;
 import java.awt.BorderLayout;
 import java.awt.Checkbox;
 import java.awt.Color;
@@ -18,6 +19,7 @@ import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import Essenciais.*;
 
 public class MiniGUI {
 
@@ -47,7 +49,7 @@ public class MiniGUI {
 		id++;
 		return id;
 	}
-	public void trataTuplo(Tuplo tuplo) {
+	public void trataTuplo(TuploRegra tuplo) {
 		modelo.addElement("Regra com id: " + tuplo.getIdregra() + " -->" + tuplo.getMetrica() + " " + tuplo.getContas() + " " + tuplo.getValor());
 	}
 

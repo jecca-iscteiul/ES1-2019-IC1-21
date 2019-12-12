@@ -1,5 +1,11 @@
+package Essenciais;
+/**
+ * @author carolinarodrigues
+ *
+ */
 public class Tuplo {
 
+	
 	private int id;
 	private String metodo;
 	private String packages;
@@ -13,6 +19,20 @@ public class Tuplo {
 	private String classs;
 	private double laa;
   
+	/**
+	 * @param id --> int; representa o id no metodo que está no ficheiro do excel
+	 * @param packages --> String; representa o nome do package que está o metodo
+	 * @param classs
+	 * @param metodo
+	 * @param loc
+	 * @param cyclo
+	 * @param atfd
+	 * @param laa
+	 * @param is_long_method
+	 * @param plasma
+	 * @param pmd
+	 * @param is_feature_envy
+	 */
 	public Tuplo(int id, String packages,String classs, String metodo, int loc, int cyclo, int atfd, double laa, boolean is_long_method, boolean plasma, boolean pmd, boolean is_feature_envy) {
 		this.id=id;
 		this.packages=packages;
@@ -108,11 +128,11 @@ public class Tuplo {
 		this.is_feature_envy = is_feature_envy;
 	}
 
-	public int getCylo() {
+	public int getCyclo() {
 		return cyclo;
 	}
 
-	public void setCylo(int cylo) {
+	public void setCyclo(int cylo) {
 		this.cyclo = cylo;
 	}
 
@@ -120,7 +140,7 @@ public class Tuplo {
 		return classs;
 	}
 
-	public void setClasss(String classs) {
+	public void setClass(String classs) {
 		this.classs = classs;
 	}
 
@@ -138,47 +158,6 @@ public class Tuplo {
 	}
 	
 	
-	private String metrica;
-	private String contas;
-	private String valor;
-	private int idregra;
-	
-	
-	public String getMetrica() {
-		return metrica;
-	}
-	public void setMetrica(String metrica) {
-		this.metrica=metrica;
-	}
-	
-	public String getContas() {
-		return contas;
-	}
-	
-	public void setContas(String contas) {
-		this.contas=contas;
-	}
-	
-	public String getValor() {
-		return valor;
-	}
-	
-	public void setValor(String valor) {
-		this.valor=valor;
-	}
-	
-	public int getIdregra() {
-		return idregra;
-	}
-	public void setIdregra(int idregra) {
-		this.idregra=idregra;
-	}
-	
-	public Tuplo(int idregra, String metrica, String contas, String valor) {
-		this.metrica=metrica;
-		this.contas=contas;
-		this.valor=valor;
-		this.idregra=idregra;
-	}
-	
+
+
 }

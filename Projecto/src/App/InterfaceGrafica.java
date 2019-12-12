@@ -1,8 +1,10 @@
+package App;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
@@ -21,26 +23,33 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import Essenciais.ReadFile;
+import Essenciais.Regra;
+import Essenciais.Tuplo;
+import Essenciais.TuploRegra;
+
 public class InterfaceGrafica {
 
 	private JFrame frame;
-	private JList<Tuplo> list;
-	private DefaultListModel listModel = new DefaultListModel<>();
-	private JFrame janelaExibirMetricas;
 	private String fileName ;
 	private ReadFile lerFicheiro;
 	private JScrollPane barrinha;
+	private DefaultTableModel dataModel;
+	private JTable table;
+	
+	private JList<TuploRegra> listaRegras;
+	private DefaultListModel listModel = new DefaultListModel<>();
 
 
-	
-	
+
+
 	public InterfaceGrafica() {
 		lerFicheiro = new ReadFile();
 		while(!lerFicheiro.isFicheiro_encontrado()) {
 			String nome = askFileName();
 			lerFicheiro.ler(nome);
 			if(!lerFicheiro.isFicheiro_encontrado()) {
-				JOptionPane.showMessageDialog(new JFrame("Erro :("), "O ficheiro: " + nome + " nao foi encontrado, \n Tente outra vez :)"  );
+				JOptionPane.showMessageDialog(new JFrame("Erro :("), "O ficheiro: " + nome + " não foi encontrado, \n Tente outra vez :)"  );
 
 			}
 		}
@@ -53,6 +62,7 @@ public class InterfaceGrafica {
 		addFrameContent();
 		frame.pack();
 		frame.setResizable(false);
+		teste();
 		frame.setVisible(true);
 
 	}
@@ -65,29 +75,17 @@ public class InterfaceGrafica {
 
 
 
-	private void updateList() {
-		int i =0;
-		//List<Tuplo> lista = lerFicheiro.getMiniLista();
+	private void updateList(TuploRegra regra) {
+		
+		listModel.addElement(regra);
 
-		for(Tuplo tuplo: lerFicheiro.getMiniLista()) {
-			listModel.add(i, tuplo);
-			i++;
-		}
-
-		list = new JList<>(listModel);
+		listaRegras= new JList<>(listModel);	
+		
+		
 
 	}
 
 
-	private void updateMetricas() {
-
-		janelaExibirMetricas.setLayout(new BorderLayout());
-		janelaExibirMetricas.setPreferredSize(new Dimension(300,300) );
-		janelaExibirMetricas.pack();
-		janelaExibirMetricas.setVisible(true);
-
-		updateList();
-	}
 
 	private void addFrameContent() {
 
@@ -96,46 +94,10 @@ public class InterfaceGrafica {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new MiniGUI(lerFicheiro);
-				/*janelaExibirMetricas = new JFrame("Escolha as mï¿½tricas");
-				updateMetricas();
+				
+				MiniGUI miniGui = new MiniGUI(lerFicheiro);
 
 
-				JButton escolher = new JButton("Escolher");
-				escolher.addActionListener(new ActionListener() {
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						//						String name = list.getSelectedValue();
-						//						System.out.println(name);
-						//
-						//						if(list.getSelectedIndex() >= 0) {
-						//
-						//							JFrame f1 = new JFrame ("Valores");
-						//							f1.setLayout(new BorderLayout());
-						//							f1.setPreferredSize(new Dimension(200,200));
-						//							f1.pack();
-						//							f1.setResizable(false);
-						//							f1.setVisible(true);
-						//
-						//							JTextArea area1 = new JTextArea();
-						//							area1.setPreferredSize(new Dimension (200,200));
-						//							area1.setVisible(true);
-						//							area1.setEditable(true);
-						//							String limite1 = area1.getText();
-						//							System.out.println(limite1);
-						//
-						//							f1.add(area1, BorderLayout.NORTH);
-						//
-						//						}
-
-
-					}
-				});
-
-
-				janelaExibirMetricas.add(escolher, BorderLayout.SOUTH);
-	*/
 			}
 		});
 
@@ -146,7 +108,7 @@ public class InterfaceGrafica {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				//visualizarFicheiro();
+				visualizarFicheiro();
 
 			}
 		});
@@ -169,19 +131,39 @@ public class InterfaceGrafica {
 		painel.add(definirThresholds);
 		painel.add(detetarDefeitos);
 
-		
-		
-		visualizarFicheiro();
+
+
+		//visualizarFicheiro();
 		frame.add(painel, BorderLayout.SOUTH);
 
 
+		JButton avaliarQualidade = new JButton("Avaliar qualidade");
+		avaliarQualidade.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+
 	}
 
+	public void teste() {
+		dataModel = new DefaultTableModel();
+		table = new JTable(dataModel);
+		table.setVisible(true);
+		barrinha = new JScrollPane(table);
+		barrinha.setPreferredSize(new Dimension(400,300));
+		barrinha.setVisible(true);
+
+		frame.add(barrinha, BorderLayout.NORTH);
+	}
 
 
 	private void visualizarFicheiro() {
 
-		DefaultTableModel dataModel = new DefaultTableModel();
+		//dataModel = new DefaultTableModel();
 		dataModel.addColumn("MethodID");
 		dataModel.addColumn("package");
 		dataModel.addColumn("class");
@@ -193,24 +175,27 @@ public class InterfaceGrafica {
 		dataModel.addColumn("is_long_method");
 		dataModel.addColumn("iPlasma");
 		dataModel.addColumn("PMD");
-		dataModel.addColumn("is_feature_envy");
+		dataModel.addColumn("is_feature_envy");   
 
 		for(Tuplo tuplo: lerFicheiro.getMiniLista()) {
 
 			dataModel.addRow( new Object [] {tuplo.getId(), tuplo.getPackages(),tuplo.getClasss(), tuplo.getMetodo(), tuplo.getLoc(),
-					tuplo.getCylo(), tuplo.getAtfd(), tuplo.getLaa(), tuplo.isIs_long_method(),
+					tuplo.getCyclo(), tuplo.getAtfd(), tuplo.getLaa(), tuplo.isIs_long_method(),
 					tuplo.isPlasma(), tuplo.isPmd(), tuplo.isIs_feature_envy()});
 
 		}
 
-		JTable table = new JTable(dataModel);
+		table = new JTable(dataModel);
 		table.setVisible(true);
 
 		barrinha = new JScrollPane(table);
 		barrinha.setPreferredSize(new Dimension(400,300));
 		barrinha.setVisible(true);
-		
+
 		frame.add(barrinha, BorderLayout.NORTH);
 	}
+
+
+
 
 }

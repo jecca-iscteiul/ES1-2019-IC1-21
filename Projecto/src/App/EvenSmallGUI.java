@@ -1,3 +1,4 @@
+package App;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -10,6 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import Essenciais.*;
 
 public class EvenSmallGUI {
 
@@ -55,7 +58,7 @@ public class EvenSmallGUI {
 					if(!verificacao(a.getText(), b.getText(), c.getText())) {
 						JOptionPane.showMessageDialog(new JFrame("Erro :("), "Daddos inválidos, \n Tente outra vez :)"  );
 					}else {
-						Tuplo tuplo = new Tuplo(minigui.getID(),a.getText(), b.getText(), c.getText());
+						TuploRegra tuplo = new TuploRegra(minigui.getID(),a.getText(), b.getText(), c.getText());
 						minigui.trataTuplo(tuplo);
 						frame.dispose();
 					}
