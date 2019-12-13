@@ -1,6 +1,6 @@
 package Essenciais;
 
-public class RegraSimples implements Regra {
+public class RegraSimples {
 	
 private TuploRegra unicaRegra;
 	

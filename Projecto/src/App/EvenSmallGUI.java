@@ -14,6 +14,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import org.apache.poi.util.StringUtil;
+
+import com.sun.xml.internal.ws.util.StringUtils;
+
 import Essenciais.*;
 
 /**
@@ -68,13 +72,12 @@ public class EvenSmallGUI {
 	 */
 	public void inicializar() {
 		frame=new JFrame ("Add");		
-//		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//		frame.setLocation(900, 500);
 		frame.setPreferredSize(new Dimension(300, 150));
 		frame.pack();
 		frame.setResizable(true);
 		frame.setLayout(new BorderLayout());
 	}
+	
 	
 	/**
 	 * Adiciona o botão sair à janela e adiciona
@@ -118,9 +121,9 @@ public class EvenSmallGUI {
 	 */
 	public boolean verificacao(String a, String b, String c) {
 		int cadeado=0;
-		String linha = "LOC,CYCLO,ATFD,LAA,<,=,>";
+		String linha = "LOC,CYCLO,ATFD,LAA,<,>";
 		String[] vetor= linha.split(",");
-		for(int i = 0; i!=(vetor.length)-3;i++) {
+		for(int i = 0; i!=(vetor.length)-2;i++) {
 			if(a.equals(vetor[i])) {
 				cadeado++;
 			}
@@ -136,18 +139,21 @@ public class EvenSmallGUI {
 		return cadeado==3;
 	}
 	
+	
+	
 	/**
 	 * @param str String introduzida 
 	 * @return true ou false consoante foi introduzida uma palavra ou um múmero, respetivamente 
 	 */
 	public boolean isNumeric(final String str) {
+
         if (str == null || str.length() == 0) {
             return false;
         }
-        for (char c : str.toCharArray()) {
-            if (!Character.isDigit(c)) {
+       
+            if (!str.matches("^[0-9]*[.]{0,1}[0-9]*$")) {   //Porque pode ser um número decimal também (no caso do LAA)
                 return false;
-            }
+            
         }
         return true;
     }
@@ -170,7 +176,7 @@ public class EvenSmallGUI {
 		metrica.setEditable(false);
 		painelC.add(metrica);
 		
-		JTextArea contas = new JTextArea("Operadores: >, =, <");
+		JTextArea contas = new JTextArea("Operadores: > ou <");
 		contas.setEditable(false);
 		painelC.add(contas);
 		
