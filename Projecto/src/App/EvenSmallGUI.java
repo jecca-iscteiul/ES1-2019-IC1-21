@@ -1,5 +1,7 @@
 package App;
 import java.awt.BorderLayout;
+
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -14,15 +16,44 @@ import javax.swing.JTextField;
 
 import Essenciais.*;
 
-public class EvenSmallGUI {
+/**
+ * Date: 5/12/2019
+ * Classe que resulta em objetos para utilizar como base de comparação através de defeitos detetados
+ * @author Mário
+ * @version 1.0
+ */
 
+public class EvenSmallGUI {
+	
+	/**
+	 * objeto do tipo JFrame
+	 */
 	private JFrame frame;
+	
+	/**
+	 * Interface gráfica
+	 */
 	private MiniGUI minigui;
+	
+	/**
+	 * objeto de texto da janela identificado por a
+	 */
 	private JTextField a;
+	
+	/**
+	 * objeto de texto da janela identificado por b
+	 */
 	private JTextField b;
+	
+	/**
+	 * objeto de texto da janela identificado por c
+	 */
 	private JTextField c;
 
-	
+	/**
+	 * Cria uma interface gráfica (janela) com botões
+	 * @param minigui interface gráfica
+	 */
 	public EvenSmallGUI(MiniGUI minigui) {
 		this.minigui=minigui;
 		inicializar();
@@ -32,15 +63,23 @@ public class EvenSmallGUI {
 
 	}
 	
+	/**
+	 * Inicia a janela com dimensão pré-definida e que pode ser redimensionada
+	 */
 	public void inicializar() {
 		frame=new JFrame ("Add");		
 //		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		frame.setLocation(900, 500);
-		frame.setSize(300, 150);
+//		frame.setLocation(900, 500);
+		frame.setPreferredSize(new Dimension(300, 150));
+		frame.pack();
 		frame.setResizable(true);
 		frame.setLayout(new BorderLayout());
 	}
 	
+	/**
+	 * Adiciona o botão sair à janela e adiciona
+	 *
+	 */
 	public void addBotoes() {
 		JPanel painel_baixo=new JPanel();
 		painel_baixo.setLayout(new FlowLayout());
@@ -56,7 +95,7 @@ public class EvenSmallGUI {
 		adicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					if(!verificacao(a.getText(), b.getText(), c.getText())) {
-						JOptionPane.showMessageDialog(new JFrame("Erro :("), "Daddos invÃ¡lidos, \n Tente outra vez :)"  );
+						JOptionPane.showMessageDialog(new JFrame("Erro :("), "Dados inválidos, \n Tente outra vez :)"  );
 					}else {
 						TuploRegra tuplo = new TuploRegra(minigui.getID(),a.getText(), b.getText(), c.getText());
 						minigui.trataTuplo(tuplo);
@@ -71,6 +110,12 @@ public class EvenSmallGUI {
 	
 	}
 	
+	/**
+	 * @param a String introduzida na janela a
+	 * @param b String introduzida na janela b
+	 * @param c String introduzida na janela c
+	 * @return true ou false consoante a validade das palavras introduzidas
+	 */
 	public boolean verificacao(String a, String b, String c) {
 		int cadeado=0;
 		String linha = "LOC,CYCLO,ATFD,LAA,<,=,>";
@@ -90,6 +135,11 @@ public class EvenSmallGUI {
 		}
 		return cadeado==3;
 	}
+	
+	/**
+	 * @param str String introduzida 
+	 * @return true ou false consoante foi introduzida uma palavra ou um múmero, respetivamente 
+	 */
 	public boolean isNumeric(final String str) {
         if (str == null || str.length() == 0) {
             return false;
@@ -102,7 +152,10 @@ public class EvenSmallGUI {
         return true;
     }
 	
-	
+	/**
+	 * Adiciona à janela 3 campos para preencher pelo utilizador, a métrica, os operadores e os valores 
+	 *
+	 */
 	public void addElementos() {
 		JPanel painel=new JPanel();
 		painel.setLayout(new GridLayout(2,1));
@@ -113,30 +166,37 @@ public class EvenSmallGUI {
 		JPanel painelB=new JPanel();
 		painelB.setLayout(new FlowLayout());
 		
-		JTextArea metrica = new JTextArea("MÃ©trica");
+		JTextArea metrica = new JTextArea("Métrica");
+		metrica.setEditable(false);
 		painelC.add(metrica);
-		JTextArea contas = new JTextArea(">=<");
+		
+		JTextArea contas = new JTextArea("Operadores: >, =, <");
+		contas.setEditable(false);
 		painelC.add(contas);
+		
 		JTextArea valor = new JTextArea("Valores");
+		valor.setEditable(false);
 		painelC.add(valor);
 		
 		a = new JTextField();
-//		a.setSize(10, 20);
+		a.setPreferredSize(new Dimension(60,20));
 		painelB.add(a);
+		
 		b = new JTextField();
-//		b.setSize(10, 20);
+		b.setPreferredSize(new Dimension(40,20));
 		painelB.add(b);
+		
 		c= new JTextField();
-//		c.setSize(10, 20);
+		c.setPreferredSize(new Dimension(60,20));
 		painelB.add(c);
 		
-		a.setText("_________");
-		b.setText("_____");
-		c.setText("_________");
 		
 		painel.add(painelC);
 		painel.add(painelB);
 		frame.add(painel);
 	}
+	
+	
+	
 	
 }

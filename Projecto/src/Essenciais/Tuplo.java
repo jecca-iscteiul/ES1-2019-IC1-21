@@ -60,98 +60,63 @@ public class Tuplo {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	
 	public String getMetodo() {
 		return metodo;
 	}
 
-	public void setMetodo(String metodo) {
-		this.metodo = metodo;
-	}
 
 	public String getPackages() {
 		return packages;
 	}
 
-	public void setPackages(String packages) {
-		this.packages = packages;
-	}
 
 	public int getLoc() {
 		return loc;
 	}
 
-	public void setLoc(int loc) {
-		this.loc = loc;
-	}
 
 	public int getAtfd() {
 		return atfd;
 	}
 
-	public void setAtfd(int atfd) {
-		this.atfd = atfd;
-	}
 
 	public boolean isIs_long_method() {
 		return is_long_method;
 	}
 
-	public void setIs_long_method(boolean is_long_method) {
-		this.is_long_method = is_long_method;
-	}
+	
 
 	public boolean isPlasma() {
 		return plasma;
 	}
 
-	public void setPlasma(boolean plasma) {
-		this.plasma = plasma;
-	}
 
 	public boolean isPmd() {
 		return pmd;
 	}
 
-	public void setPmd(boolean pmd) {
-		this.pmd = pmd;
-	}
 
 	public boolean isIs_feature_envy() {
 		return is_feature_envy;
 	}
 
-	public void setIs_feature_envy(boolean is_feature_envy) {
-		this.is_feature_envy = is_feature_envy;
-	}
+	
 
 	public int getCyclo() {
 		return cyclo;
 	}
 
-	public void setCyclo(int cylo) {
-		this.cyclo = cylo;
-	}
+	
 
 	public String getClasss() {
 		return classs;
 	}
 
-	public void setClass(String classs) {
-		this.classs = classs;
-	}
-
+	
 	public double getLaa() {
 		return laa;
 	}
-
-	public void setLaa(int laa) {
-		this.laa = laa;
-	}
-
 
 	public Tuplo getTuplo () {
 		return this;
