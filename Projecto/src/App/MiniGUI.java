@@ -24,6 +24,10 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import Essenciais.*;
 
+/**
+ * @author Eduardo
+ *
+ */
 public class MiniGUI {
 
 

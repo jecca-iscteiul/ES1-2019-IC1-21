@@ -13,18 +13,59 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
+/**
+ * Date: 13/12/2017
+ * Esta classe tem o objectivo de ler o ficheiro de excel que o utelizador diz 
+ * @author Eduardo
+ * @version 1.0
+ *
+ */
+
 public class ReadFile  {
 
+	/**
+	 * @minilista é uma Lista onde tem a informação lida do ficheiro
+	 */
 	private List<Tuplo> miniLista = new ArrayList<>();
+	/**
+	 *@path indica o caminho para onde se localiza o ficheiro
+	 *Tem de ser preencido manualmete 
+	 */
 	private String path;
+	/**
+	 * este boolean indica se encontrou o ficheiro ou não, para a nossa GUI perceba que tem de pedir outra vez o nome do ficheiro ou não
+	 */
 	private boolean ficheiro_encontrado;
+	/**
+	 * @nomeficheiro nome do ficheiro excel
+	 */
 	private String nomeFicheiro;
 
+<<<<<<< HEAD
 
+=======
+	//private List<Regra> lista;
+
+	private int DCI;	//  (PMI ou iPlasma) ï¿½ TRUE e a coluna e is_long_method tambï¿½m ï¿½ TRUE;
+	private int DII;	 // (PMI ou iPlasma) ï¿½ TRUE e is_long_method ï¿½ FALSE;
+	private int ADCI;   // (PMI ou iPlasma) ï¿½ FALSE e a coluna is_long_method tambï¿½m ï¿½ FALSE;
+	private int ADII;	//  (PMI ou iPlasma) ï¿½ FALSE e is_long_method ï¿½ TRUE.
+
+
+	
+	/**
+	 * Contrutor que a unica função é dizer por agora que ainda não encontramos o ficheiro, só para inicializar a variavel ficheiro_encontrado (boolean)
+	 */
+>>>>>>> branch 'master' of https://github.com/jecca-iscteiul/ES1-2019-IC1-21.git
 	public ReadFile() {
 		ficheiro_encontrado=false;
 	}
 
+	/**
+	 * Lê o ficheiro de excel, do primeiro até ao ultimo elemento, mas só lê da primeira folha de excel, mas podemos meter para ler as folhas todas.
+	 * A informação lida do ficheiro excel é inserida na variavel miniLista que é uma List<Tuplo>
+	 * @param nomeficheiro 
+	 */
 	public void ler(String nomeficheiro)  {
 		this.nomeFicheiro=nomeficheiro;
 		this.path = nomeficheiro;
@@ -65,22 +106,61 @@ public class ReadFile  {
 			this.ficheiro_encontrado=false;
 		}
 
+<<<<<<< HEAD
+=======
+	/**
+	 * Função criada do inicio do projecto para verificar que se a informação inserida da variavel miniLista foi bem inserida
+	 */
+	public void teste() {
+		for (Tuplo tuplo : miniLista) {
+			System.out.println("--------------------------");
+			System.out.println(tuplo.getId());
+			System.out.println(tuplo.getPackages());
+			System.out.println(tuplo.getClass());
+			System.out.println(tuplo.getMetodo());
+			System.out.println(tuplo.getLoc());
+			System.out.println(tuplo.getCyclo());
+			System.out.println(tuplo.getAtfd());
+			System.out.println(tuplo.getLaa());
+			System.out.println(tuplo.isIs_long_method());
+			System.out.println(tuplo.isPlasma());
+			System.out.println(tuplo.isPmd());
+			System.out.println(tuplo.isIs_feature_envy());
+		}
+>>>>>>> branch 'master' of https://github.com/jecca-iscteiul/ES1-2019-IC1-21.git
 	}
 
+<<<<<<< HEAD
+=======
+
+	/**
+	 * Esta função é utelizada nas classes da GUI para mostrarem ao utelizador o nome do ficheiro 
+	 * @return uma String que diz o nomeficheiro
+	 */
+>>>>>>> branch 'master' of https://github.com/jecca-iscteiul/ES1-2019-IC1-21.git
 	public String getnomeFicheiro() {
 		return nomeFicheiro;
 	}
 
+	/**
+	 * 
+	 * @return uma lista com toda informção lida do ficheiro excel
+	 */
 	public List<Tuplo> getMiniLista() {
 		return miniLista;
 	}
 
+<<<<<<< HEAD
 
+=======
+	/**
+	 * Esta função é utelizada na class InterfaceGrafica para saber dizer se o ficheiro foi aberto ou não.
+	 * @return
+	 */
+>>>>>>> branch 'master' of https://github.com/jecca-iscteiul/ES1-2019-IC1-21.git
 	public boolean isFicheiro_encontrado() {
 		return ficheiro_encontrado;
 	}
-
-
 
 
 	public List<TuploDefeito> detetarDefeitosIPlasma() {
