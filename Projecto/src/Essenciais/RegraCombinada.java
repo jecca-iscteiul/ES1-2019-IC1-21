@@ -1,5 +1,12 @@
 package Essenciais;
 
+/**
+ * date : 13/12/2019 
+ * @version 1.0
+ * Serve para criar uma regra combinada através de duas regras simples
+ * @author adrianamorais
+ */
+
 public class RegraCombinada implements Regra {
 	
 	private RegraSimples regra1;
