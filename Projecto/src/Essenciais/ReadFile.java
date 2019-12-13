@@ -13,11 +13,32 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
+/**
+ * Date: 13/12/2017
+ * Esta classe tem o objectivo de ler o ficheiro de excel que o utelizador diz 
+ * @author Eduardo
+ * @version 1.0
+ *
+ */
+
 public class ReadFile  {
 
+	/**
+	 * @minilista é uma Lista onde tem a informação lida do ficheiro
+	 */
 	private List<Tuplo> miniLista = new ArrayList<>();
+	/**
+	 *@path indica o caminho para onde se localiza o ficheiro
+	 *Tem de ser preencido manualmete 
+	 */
 	private String path;
+	/**
+	 * este boolean indica se encontrou o ficheiro ou não, para a nossa GUI perceba que tem de pedir outra vez o nome do ficheiro ou não
+	 */
 	private boolean ficheiro_encontrado;
+	/**
+	 * @nomeficheiro nome do ficheiro excel
+	 */
 	private String nomeFicheiro;
 
 	//private List<Regra> lista;
@@ -28,11 +49,19 @@ public class ReadFile  {
 	private int ADII;	//  (PMI ou iPlasma) ï¿½ FALSE e is_long_method ï¿½ TRUE.
 
 
-
+	
+	/**
+	 * Contrutor que a unica função é dizer por agora que ainda não encontramos o ficheiro, só para inicializar a variavel ficheiro_encontrado (boolean)
+	 */
 	public ReadFile() {
 		ficheiro_encontrado=false;
 	}
 
+	/**
+	 * Lê o ficheiro de excel, do primeiro até ao ultimo elemento, mas só lê da primeira folha de excel, mas podemos meter para ler as folhas todas.
+	 * A informação lida do ficheiro excel é inserida na variavel miniLista que é uma List<Tuplo>
+	 * @param nomeficheiro 
+	 */
 	public void ler(String nomeficheiro)  {
 		this.nomeFicheiro=nomeficheiro;
 		//		this.path = System.getProperty("user.dir" + "\\" + nomeficheiro );
@@ -79,6 +108,9 @@ public class ReadFile  {
 		//   teste();
 	}
 
+	/**
+	 * Função criada do inicio do projecto para verificar que se a informação inserida da variavel miniLista foi bem inserida
+	 */
 	public void teste() {
 		for (Tuplo tuplo : miniLista) {
 			System.out.println("--------------------------");
@@ -98,23 +130,29 @@ public class ReadFile  {
 	}
 
 
+	/**
+	 * Esta função é utelizada nas classes da GUI para mostrarem ao utelizador o nome do ficheiro 
+	 * @return uma String que diz o nomeficheiro
+	 */
 	public String getnomeFicheiro() {
 		return nomeFicheiro;
 	}
 
+	/**
+	 * 
+	 * @return uma lista com toda informção lida do ficheiro excel
+	 */
 	public List<Tuplo> getMiniLista() {
 		return miniLista;
 	}
 
-	public void setMiniLista(List<Tuplo> miniLista) {
-		this.miniLista = miniLista;
-	}
-
+	/**
+	 * Esta função é utelizada na class InterfaceGrafica para saber dizer se o ficheiro foi aberto ou não.
+	 * @return
+	 */
 	public boolean isFicheiro_encontrado() {
 		return ficheiro_encontrado;
 	}
-
-
 
 
 	public List<TuploDefeito> detetarDefeitosIPlasma() {
