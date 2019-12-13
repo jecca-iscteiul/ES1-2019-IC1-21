@@ -52,16 +52,6 @@ public class InterfaceGrafica {
 
 	public InterfaceGrafica() {
 		lerFicheiro = new ReadFile();
-		while(!lerFicheiro.isFicheiro_encontrado()) {
-			String nome = askFileName();
-			lerFicheiro.ler(nome);
-			if(!lerFicheiro.isFicheiro_encontrado()) {
-				JOptionPane.showMessageDialog(new JFrame("Erro :("), "O ficheiro: " + nome + " não foi encontrado, \n Tente outra vez :)"  );
-
-			}
-		}
-
-
 		frame = new JFrame("App para detetar a qualidade de defeitos");
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setLayout(new BorderLayout());
@@ -72,6 +62,17 @@ public class InterfaceGrafica {
 		teste();
 		frame.setVisible(true);
 
+	}
+	
+	public void pedirUtelizadorNomeFicheiro() {
+		while(!lerFicheiro.isFicheiro_encontrado()) {
+			String nome = askFileName();
+			lerFicheiro.ler(nome);
+			if(!lerFicheiro.isFicheiro_encontrado()) {
+				JOptionPane.showMessageDialog(new JFrame("Erro :("), "O ficheiro: " + nome + " não foi encontrado, \n Tente outra vez :)"  );
+
+			}
+		}
 	}
 
 	public String askFileName() {

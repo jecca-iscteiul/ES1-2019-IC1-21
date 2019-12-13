@@ -66,7 +66,7 @@ public class ReadFile  {
 		this.nomeFicheiro=nomeficheiro;
 		//		this.path = System.getProperty("user.dir" + "\\" + nomeficheiro );
 		//		System.out.println(path);
-		//		this.path="C:/Users/Eduardo/Desktop/"+nomeficheiro;
+				this.path="C:/Users/Eduardo/Desktop/"+nomeficheiro;
 		this.path = nomeficheiro;
 		//this.path="C:/Users/Irina Fernandes/Desktop/"+nomeficheiro;
 
