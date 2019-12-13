@@ -203,7 +203,7 @@ public class ReadFile  {
 
 			for(Tuplo tuplo: miniLista) {
 
-				if(metrica.equals("LAA")) {
+				if(metrica.equals("LAA")) {   
 
 					if(contas.equals("<")) {
 						if(tuplo.getLaa() < valor)
