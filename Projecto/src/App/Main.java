@@ -5,5 +5,6 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		InterfaceGrafica gui = new InterfaceGrafica();
+		gui.pedirUtelizadorNomeFicheiro();
 	}
 }

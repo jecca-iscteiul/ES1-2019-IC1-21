@@ -59,6 +59,12 @@ public class ReadFile  {
 	 */
 	public void ler(String nomeficheiro)  {
 		this.nomeFicheiro=nomeficheiro;
+<<<<<<< HEAD
+=======
+		//		this.path = System.getProperty("user.dir" + "\\" + nomeficheiro );
+		//		System.out.println(path);
+				this.path="C:/Users/Eduardo/Desktop/"+nomeficheiro;
+>>>>>>> branch 'master' of https://github.com/jecca-iscteiul/ES1-2019-IC1-21.git
 		this.path = nomeficheiro;
 
 		Workbook workbook;

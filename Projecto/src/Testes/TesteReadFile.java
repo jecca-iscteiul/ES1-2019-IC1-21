@@ -32,6 +32,7 @@ public class TesteReadFile {
 	@Test
 	public void testLer() {
 		rd.ler("Long-Method.xlsx");
+		rd.teste();
 		List<Tuplo> miniLista = rd.getMiniLista();
 		assertEquals(aux.get(0).getAtfd(), miniLista.get(0).getAtfd());
 	}
