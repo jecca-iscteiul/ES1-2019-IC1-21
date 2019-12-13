@@ -53,7 +53,7 @@ public class RegraCombinada{
 	
 	
 	/**
-	 * @return uma String operador lógico &$ ou ||
+	 * @return uma String operador que pode ser "E" ou "OU"
 	 */
 	public String getOperador() {
 		return operador;

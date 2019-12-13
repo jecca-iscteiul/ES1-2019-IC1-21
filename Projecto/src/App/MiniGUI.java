@@ -27,7 +27,7 @@ import Essenciais.*;
 /**
  * Date: 13/12/2019
  * Esta classe é o intermediário entre o utelizador com o códico, mais especificamente define as regras
- * @author Eduardo
+ * @author Carolina
  * @version 1.0
  *
  */
@@ -122,7 +122,7 @@ public class MiniGUI {
 
 	/**
 	 * Adiciona informação a Jlist e armazena no ArrayList
-	 * @param tuplo
+	 * @param tuplo {@link TuploRegra}
 	 */
 	public void trataTuplo(TuploRegra tuplo) {
 		modelo.addElement(tuplo);
@@ -144,7 +144,7 @@ public class MiniGUI {
 	/**
 	 * inicializar os botoes, criar os eventos dos botoes e CheckBox
 	 */
-	private void addBotao() {
+	public void addBotao() {
 		JPanel painel_baixo=new JPanel();
 		painel_baixo.setLayout(new FlowLayout());
 

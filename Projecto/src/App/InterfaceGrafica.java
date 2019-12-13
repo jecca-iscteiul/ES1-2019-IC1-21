@@ -6,12 +6,14 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -23,6 +25,7 @@ import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.filechooser.FileSystemView;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -86,13 +89,24 @@ public class InterfaceGrafica {
 	public InterfaceGrafica() {
 		lerFicheiro = new ReadFile();
 		
-		while(!lerFicheiro.isFicheiro_encontrado()) {
-			String nome = askFileName();
-			lerFicheiro.ler(nome);
-			if(!lerFicheiro.isFicheiro_encontrado()) {
-				JOptionPane.showMessageDialog(new JFrame("Erro :("), "O ficheiro: " + nome + " não foi encontrado, \n Tente outra vez :)"  );
+//		while(!lerFicheiro.isFicheiro_encontrado()) {
+//			String nome = askFileName();
+//			lerFicheiro.ler(nome);
+//			if(!lerFicheiro.isFicheiro_encontrado()) {
+//				JOptionPane.showMessageDialog(new JFrame("Erro :("), "O ficheiro: " + nome + " não foi encontrado, \n Tente outra vez :)"  );
+//
+//			}
+//		}
+		
+		JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 
-			}
+		int returnValue = jfc.showOpenDialog(null);
+		// int returnValue = jfc.showSaveDialog(null);
+
+		if (returnValue == JFileChooser.APPROVE_OPTION) {
+			File selectedFile = jfc.getSelectedFile();
+			System.out.println(selectedFile.getAbsolutePath());
+			lerFicheiro.ler(selectedFile.getAbsolutePath());
 		}
 		
 		frame = new JFrame("App para detetar a qualidade de defeitos");
@@ -105,17 +119,6 @@ public class InterfaceGrafica {
 		teste();
 		frame.setVisible(true);
 
-	}
-	
-	public void pedirUtelizadorNomeFicheiro() {
-		while(!lerFicheiro.isFicheiro_encontrado()) {
-			String nome = askFileName();
-			lerFicheiro.ler(nome);
-			if(!lerFicheiro.isFicheiro_encontrado()) {
-				JOptionPane.showMessageDialog(new JFrame("Erro :("), "O ficheiro: " + nome + " não foi encontrado, \n Tente outra vez :)"  );
-
-			}
-		}
 	}
 
 	/**
@@ -470,7 +473,7 @@ public class InterfaceGrafica {
 	/**
 	 * Método para visualizar o ficheiro selecionado na interface gráfica
 	 */
-	private void visualizarFicheiro() {
+	public void visualizarFicheiro() {
 
 		dataModel.addColumn("MethodID");
 		dataModel.addColumn("package");

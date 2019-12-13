@@ -57,18 +57,18 @@ public class Tuplo {
 	private double laa;
   
 	/**
-	 * @param id --> int; representa o id no metodo que estÃ¡ no ficheiro do excel
-	 * @param packages --> String; representa o nome do package que estÃ¡ o metodo
-	 * @param classs
-	 * @param metodo
-	 * @param loc
-	 * @param cyclo
-	 * @param atfd
-	 * @param laa
-	 * @param is_long_method
-	 * @param plasma
-	 * @param pmd
-	 * @param is_feature_envy
+	 * @param id  int representa o id no metodo que estÃ¡ no ficheiro do excel
+	 * @param packages  String representa o nome do package que estão o metodo
+	 * @param classs  Identificação class
+	 * @param metodo  Identificação metodo
+	 * @param loc	 Identificação loc
+	 * @param cyclo  Identificação cyclo
+	 * @param atfd  Identificação atfd
+	 * @param laa  Identificação laa
+	 * @param is_long_method  Identificação is_long_method
+	 * @param plasma  Identificação plasma
+	 * @param pmd  Identificação pmd
+	 * @param is_feature_envy  Identificação is_feature_envy
 	 */
 	public Tuplo(int id, String packages,String classs, String metodo, int loc, int cyclo, int atfd, double laa, boolean is_long_method, boolean plasma, boolean pmd, boolean is_feature_envy) {
 		this.id=id;
@@ -96,86 +96,86 @@ public class Tuplo {
 	}
 
 	/**
-	 * devolve o atributo id do tuplo
+	 * @return devolve o atributo id do tuplo
 	 */
 	public int getId() {
 		return id;
 	}
 
 	/**
-	 * devolve o atributo metodo do tuplo
+	 * @return devolve o atributo metodo do tuplo
 	 */
 	public String getMetodo() {
 		return metodo;
 	}
 
 	/**
-	 * devolve o atributo packages do tuplo
+	 * @return devolve o atributo packages do tuplo
 	 */
 	public String getPackages() {
 		return packages;
 	}
 
 	/**
-	 * devolve o atributo loc do tuplo
+	 * @return devolve o atributo loc do tuplo
 	 */
 	public int getLoc() {
 		return loc;
 	}
 
 	/**
-	 * devolve o atributo atfd do tuplo
+	 * @return devolve o atributo atfd do tuplo
 	 */
 	public int getAtfd() {
 		return atfd;
 	}
 	/**
-	 * devolve o atributo is_long_method do tuplo
+	 * @return devolve o atributo is_long_method do tuplo
 	 */
 	public boolean isIs_long_method() {
 		return is_long_method;
 	}
 	/**
-	 * devolve o atributo plasma do tuplo
+	 * @return devolve o atributo plasma do tuplo
 	 */
 	public boolean isPlasma() {
 		return plasma;
 	}
 
 	/**
-	 * devolve o atributo pmd do tuplo
+	 * @return devolve o atributo pmd do tuplo
 	 */
 	public boolean isPmd() {
 		return pmd;
 	}
 
 	/**
-	 * devolve o atributo is_feature_envy do tuplo
+	 * @return devolve o atributo is_feature_envy do tuplo
 	 */
 	public boolean isIs_feature_envy() {
 		return is_feature_envy;
 	}
 	/**
-	 * devolve o atributo cyclo do tuplo
+	 * @return devolve o atributo cyclo do tuplo
 	 */
 	public int getCyclo() {
 		return cyclo;
 	}
 	/**
-	 * devolve o atributo classs do tuplo
+	 * @return devolve o atributo classs do tuplo
 	 */
 	public String getClasss() {
 		return classs;
 	}
 
 	/**
-	 * devolve o atributo laa do tuplo
+	 * @return devolve o atributo laa do tuplo
 	 */
 	public double getLaa() {
 		return laa;
 	}
 	/**
-	 * devolve o tuplo
+	 * @return devolve o tuplo
 	 */
 	public Tuplo getTuplo () {
 		return this;

@@ -24,45 +24,28 @@ import App.*;
 public class ReadFile  {
 
 	/**
-	 * @minilista ï¿½ uma Lista onde tem a informaï¿½ï¿½o lida do ficheiro
+	 * minilista é uma Lista onde tem a informaï¿½ï¿½o lida do ficheiro
 	 */
 	private List<Tuplo> miniLista = new ArrayList<>();
 	/**
-	 *@path indica o caminho para onde se localiza o ficheiro
+	 *path indica o caminho para onde se localiza o ficheiro
 	 *Tem de ser preencido manualmete 
 	 */
 	private String path;
+
 	/**
-	 * este boolean indica se encontrou o ficheiro ou nï¿½o, para a nossa GUI perceba que tem de pedir outra vez o nome do ficheiro ou nï¿½o
-	 */
-	private boolean ficheiro_encontrado;
-	/**
-	 * @nomeficheiro nome do ficheiro excel
+	 * nomeficheiro nome do ficheiro excel
 	 */
 	private String nomeFicheiro;
-
-
 	/**
-	 * Contrutor que a unica funï¿½ï¿½o ï¿½ dizer por agora que ainda nï¿½o encontramos o ficheiro, sï¿½ para inicializar a variavel ficheiro_encontrado (boolean)
+	 * Lê o ficheiro de excel, do primeiro até ao ultimo elemento, mas só lê a primeira folha de excel, mas podemos meter para ler as folhas todas.
+	 * A informacao lida do ficheiro excel é inserida na variavel miniLista que é uma List
+	 * @param abc  inclui o path e o nome do ficheiro
 	 */
-	public ReadFile() {
-		ficheiro_encontrado=false;
-	}
-
-	/**
-	 * Lê o ficheiro de excel, do primeiro atï¿½ ao ultimo elemento, mas sï¿½ lï¿½ da primeira folha de excel, mas podemos meter para ler as folhas todas.
-	 * A informaï¿½ï¿½o lida do ficheiro excel ï¿½ inserida na variavel miniLista que ï¿½ uma List<Tuplo>
-	 * @param nomeficheiro 
-	 */
-	public void ler(String nomeficheiro)  {
-		this.nomeFicheiro=nomeficheiro;
-		//this.path="C:\\Users\\Eduardo\\Desktop\\"+nomeficheiro;
-		this.path = nomeficheiro;
-
-
+	public void ler(String abc)  {
 		Workbook workbook;
 		try {
-			workbook = WorkbookFactory.create(new File(path));
+			workbook = WorkbookFactory.create(new File(abc));
 
 			Sheet sheet = workbook.getSheetAt(0);				//diz que vamos ler a primeira folha
 
@@ -81,7 +64,6 @@ public class ReadFile  {
 					a[i]=cellValue;
 					i++;
 				}
-
 				if(contador!=0) {
 					Tuplo mini = new Tuplo(Integer.parseInt(a[0]), a[1], a[2], a[3], Integer.parseInt(a[4]), Integer.parseInt(a[5]), Integer.parseInt(a[6]), Double.valueOf(a[7]), Boolean.parseBoolean(a[8]), Boolean.parseBoolean(a[9]), Boolean.parseBoolean(a[10]), Boolean.parseBoolean(a[11]));
 					miniLista.add(mini);
@@ -91,10 +73,8 @@ public class ReadFile  {
 			}     
 
 			workbook.close();
-			this.ficheiro_encontrado=true;
 		} catch (EncryptedDocumentException | IOException e) {
-			//			e.printStackTrace();
-			this.ficheiro_encontrado=false;
+			System.out.println("erro");
 		}
 	}
 
@@ -121,7 +101,7 @@ public class ReadFile  {
 
 
 	/**
-	 * Esta funï¿½ï¿½o ï¿½ utilizada nas classes da GUI para mostrarem ao utelizador o nome do ficheiro 
+	 * Esta funcaoo é utilizada nas classes da GUI para mostrarem ao utelizador o nome do ficheiro 
 	 * @return uma String que diz o nomeficheiro
 	 */
 	public String getnomeFicheiro() {
@@ -130,21 +110,11 @@ public class ReadFile  {
 
 	/**
 	 * 
-	 * @return uma lista com toda informï¿½ï¿½o lida do ficheiro excel
+	 * @return uma lista com toda informacao lida do ficheiro excel
 	 */
 	public List<Tuplo> getMiniLista() {
 		return miniLista;
 	}
-
-	/**
-	 * Esta funï¿½ï¿½o ï¿½ utelizada na class InterfaceGrafica para saber dizer se o ficheiro foi aberto ou nï¿½o.
-	 * @return
-	 */
-	public boolean isFicheiro_encontrado() {
-		return ficheiro_encontrado;
-	}
-
-
 
 	/**
 	 * Deteta os defeitos do ficheiro para a {@link RegraCombinada} regra

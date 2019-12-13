@@ -69,7 +69,7 @@ private TuploRegra unicaRegra;
 	}
 	
 	/**
-	 * @return {@ling RegraSimples}
+	 * @return {@link RegraSimples}
 	 */
 	public RegraSimples getRegra() {
 		return this;

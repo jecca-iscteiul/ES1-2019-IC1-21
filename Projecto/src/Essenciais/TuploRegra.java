@@ -26,8 +26,13 @@ public class TuploRegra {
 	 */
 	private int idregra;
 	
+	
 	/**
 	 * Definir os argumentos como atributos
+	 * @param idregra id do tuplo
+	 * @param metrica a metrica defenida
+	 * @param contas simbolos matematicos
+	 * @param valor valor numerico
 	 */
 	public TuploRegra(int idregra, String metrica, String contas, String valor) {
 		this.metrica=metrica;
@@ -37,28 +42,28 @@ public class TuploRegra {
 	}
 	
 	/**
-	 * devolve o atributo metrica
+	 * @return devolve o atributo metrica
 	 */
 	public String getMetrica() {
 		return metrica;
 	}
 	
 	/**
-	 * devolve o atributo contas
+	 * @return devolve o atributo contas
 	 */
 	public String getContas() {
 		return contas;
 	}
 	
 	/**
-	 * devolve o atributo valor
+	 * @return devolve o atributo valor
 	 */
 	public String getValor() {
 		return valor;
 	}
 	
 	/**
-	 * devolve o atributo id da regra
+	 * @return devolve o atributo id da regra
 	 */
 	public int getIdregra() {
 		return idregra;
