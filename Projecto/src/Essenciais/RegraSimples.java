@@ -28,7 +28,7 @@ private TuploRegra unicaRegra;
 	public TuploRegra getUnicaRegra() {
 		return unicaRegra;
 	}
-	
+	 
 	
 	/**
 	 * coloca o isLongMethod a true e o defeito = "is_long_method"
