@@ -19,10 +19,10 @@ Rodrigo Valente, 82012
   NOTAS A SEREM LEVADAS EM CONSIDERAÇÃO PELO UTILIZADOR:
 
   * O ficheiro que é dado no arranque da aplicação deve estar contido no JavaProject do projeto;
-  * Quando se carrega no botão *"Definir regras e thresholds"* deve-se primeiro carregar no botão "Adicionar" para se criar uma regra e depois, de acordo com a finalidade da regra, ser simples ou combinada, carregar no botão "Criar regra simples" e "Criar regra combinada", respetivamente;
-  * No caso de ser uma regra combinada deve-se ainda selecionar umas das checkboxs "E" e "OU", que correspondem aos operadores lógicos (AND e OR), nunca as duas em simultâneo, e ainda um dos defeitos "is_long_method" ou "is_feature_envy", nunca os dois em simultâneo;
+  * Quando se carrega no botão *"Definir regras e thresholds"* deve-se primeiro carregar no botão *"Adicionar"* para se criar uma regra e depois, de acordo com a finalidade da regra, ser simples ou combinada, carregar no botão *"Criar regra simples"* e *"Criar regra combinada"*, respetivamente;
+  * No caso de ser uma regra combinada deve-se ainda selecionar umas das checkboxs *"E"* e *"OU"* (nunca ambas em simultâneo), que correspondem aos operadores lógicos (AND e OR) e ainda um dos defeitos *"is_long_method"* ou *"is_feature_envy"* (nunca os dois em simultâneo);
   * No caso de ser uma regra simples, deve-se apenas escolher um dos defeitos acima referidos (sem operador lógico);
-  * O utilizador deve ainda ter em mente que o defeito "is_long_method" é atribuído exclusivamente às métricas LOC e CYCLO, bem como o "is_feature_envy" é apenas disposto às métricas LAA e ATFD.
+  * O utilizador deve ainda ter em mente que o defeito *"is_long_method"* é atribuído exclusivamente às métricas *LOC* e *CYCLO*, bem como o *"is_feature_envy"* é apenas disposto às métricas *LAA* e *ATFD*.
   * Para detetar defeitos ou avaliar a qualidade, deve-se apenas escolher uma das regras ou ferramentas apresentadas na lista.
 
 Caso uma destas notas não seja cumprida pelo utilizador, é possível que a aplicação apresente erros ou os resultados não corresponderem aos esperados.
