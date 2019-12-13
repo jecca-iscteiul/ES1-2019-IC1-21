@@ -30,7 +30,7 @@ import javax.swing.table.TableModel;
 import Essenciais.*;
 
 /**
- * 
+ * Classe para visualização da nossa aplicação
  * @author Irina Fernandes
  * 
  */
