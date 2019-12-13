@@ -25,6 +25,7 @@ public class RegraCombinada implements Regra {
 	}   
 	
 	
+	
 
 	/**
 	 * @return String 
