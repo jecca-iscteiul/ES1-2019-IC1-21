@@ -2,10 +2,15 @@
 Equipa de trabalho :
 
 Adriana Morais, 82411
+
 Carolina Rodrigues, 78632
+
 Irina Fernandes, 83794
+
 José Eduardo Correia, 78390 
+
 Mário da Costa, 82030
+
 Rodrigo Valente, 82012
 
 
