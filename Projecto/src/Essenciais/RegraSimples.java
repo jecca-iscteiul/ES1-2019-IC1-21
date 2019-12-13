@@ -1,8 +1,6 @@
 package Essenciais;
 
-<<<<<<< HEAD
 public class RegraSimples {
-=======
 /**
  * date : 13/12/2019 
  * @version 1.0
@@ -10,16 +8,12 @@ public class RegraSimples {
  * @author adrianamorais
  */
 
-public class RegraSimples implements Regra {
->>>>>>> branch 'master' of https://github.com/jecca-iscteiul/ES1-2019-IC1-21.git
 	
 private TuploRegra unicaRegra;
 	
 	private boolean isLongMethod;   
 	private boolean isFeatureEnvy;
-
 	private String defeito;   
-	
 
 	public RegraSimples(TuploRegra apenasUmaRegra) {
 		this.unicaRegra= apenasUmaRegra;
@@ -89,8 +83,4 @@ private TuploRegra unicaRegra;
 		return "" + unicaRegra + " ";
 	}
 	
-	
-	
-	
 }
-

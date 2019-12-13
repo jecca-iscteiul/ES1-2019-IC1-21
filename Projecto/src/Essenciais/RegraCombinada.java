@@ -1,8 +1,4 @@
 package Essenciais;
-
-<<<<<<< HEAD
-public class RegraCombinada {
-=======
 /**
  * date : 13/12/2019 
  * @version 1.0
@@ -10,13 +6,11 @@ public class RegraCombinada {
  * @author adrianamorais
  */
 
-public class RegraCombinada implements Regra {
->>>>>>> branch 'master' of https://github.com/jecca-iscteiul/ES1-2019-IC1-21.git
+public class RegraCombinada{
 	
 	private RegraSimples regra1;
 	private String operador;
 	private RegraSimples regra2;	
-	
 	private boolean isLongMethod;   
 	private boolean isFeatureEnvy;
 

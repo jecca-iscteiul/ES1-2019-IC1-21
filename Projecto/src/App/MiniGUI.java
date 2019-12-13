@@ -284,7 +284,6 @@ public class MiniGUI {
 	}
 
 
-<<<<<<< HEAD
 	public void selecionarJlist() {
 		texto_list.addListSelectionListener(new ListSelectionListener(){
 			@Override
@@ -294,13 +293,12 @@ public class MiniGUI {
 				}
 			}
 		});
-=======
+	}
 	/**
 	 * @return ArrayList de Tuplo de regras
 	 */
 	public ArrayList<TuploRegra> getListTuplos() {
 		return auxTuploRegras;
->>>>>>> branch 'master' of https://github.com/jecca-iscteiul/ES1-2019-IC1-21.git
 	}
 
 
