@@ -82,7 +82,7 @@ public class InterfaceGrafica {
 	}
 
 
-	private void addFrameContent() {
+	public void addFrameContent() {
 
 		JButton mostrarFicheiro = new JButton("Mostrar Ficheiro");
 		mostrarFicheiro.addActionListener(new ActionListener() {
