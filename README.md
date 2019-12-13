@@ -25,4 +25,4 @@ Rodrigo Valente, 82012
   * O utilizador deve ainda ter em mente que o defeito *"is_long_method"* é atribuído exclusivamente às métricas *LOC* e *CYCLO*, bem como o *"is_feature_envy"* é apenas disposto às métricas *LAA* e *ATFD*.
   * Para detetar defeitos ou avaliar a qualidade, deve-se apenas escolher uma das regras ou ferramentas apresentadas na lista.
 
-Caso uma destas notas não seja cumprida pelo utilizador, é possível que a aplicação apresente erros ou os resultados não corresponderem aos esperados.
+Caso uma destas notas não seja cumprida pelo utilizador, é possível que a aplicação apresente erros ou que os resultados não correspondam aos esperados.
