@@ -11,5 +11,12 @@ public class TesteReadFile {
 		ReadFile rd = new ReadFile();
 		assertEquals(false,rd.isFicheiro_encontrado());
 	}
+	
+	//assertFalse
+	//assertNotEquals
+	@Test
+	public void test2() {
 
+	}
+	
 }
