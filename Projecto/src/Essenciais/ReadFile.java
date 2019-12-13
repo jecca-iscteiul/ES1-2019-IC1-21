@@ -306,34 +306,6 @@ public class ReadFile  {
 
 	}
 
-//
-//	public List<Integer> contadoresIPlasma () {  // os contadores s�o retornados por essa ordem: DCI, DII, ADCI e ADII
-//
-//		for(Tuplo tuplo: getMiniLista()) {
-//
-//			if((tuplo.isPlasma() == true) && (tuplo.isIs_long_method() == true)) 
-//				this.DCI++;	
-//
-//			if((tuplo.isPlasma() == true) && (tuplo.isIs_long_method() == false))
-//				this.DII++;
-//
-//			if((tuplo.isPlasma() == false) && (tuplo.isIs_long_method() == false))
-//				this.ADCI++;
-//
-//			if((tuplo.isPlasma() == false) && (tuplo.isIs_long_method() == true)) 
-//				this.ADII++; 
-//
-//		}
-//
-//		List<Integer> listaContadores = new ArrayList<Integer>();
-//		listaContadores.add(DCI);
-//		listaContadores.add(DII);
-//		listaContadores.add(ADCI);
-//		listaContadores.add(ADII);
-//		DCI=0; DII=0; ADCI=0; ADII=0;
-//
-//		return listaContadores;
-//	}
 
 
 
